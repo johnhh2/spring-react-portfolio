@@ -52,7 +52,6 @@ class App extends React.Component {
         this.render();
       })
       .catch(error => {
-        this.setState({ errorMessage: error.toString() });
         console.error('Error', error);
       });
   }
