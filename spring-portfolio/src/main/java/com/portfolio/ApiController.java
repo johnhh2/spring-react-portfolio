@@ -1,5 +1,6 @@
 package com.example.springboot;
 
+import java.util.Map;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,10 +38,12 @@ public class ApiController {
 	public String json() {
 		return this.response.toString();
 	}
+
     @RequestMapping(value="/api/edit", method=RequestMethod.POST,
                     produces=MediaType.APPLICATION_JSON_VALUE)
-    public String edit(@RequestBody int val) {
-        this.response.increment_by(val);
+    public String edit(@RequestBody Map<String, Integer> request_body) {
+        int num = request_body.get("increment");
+        this.response.increment_by(num);
 		return this.response.toString();
     }
 
