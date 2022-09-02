@@ -1,11 +1,21 @@
 # Spring React Portfolio
 A custom portfolio website used to display projects and related information
 
-## Main dependencies
- - Spring
- - React.js
+## Major Dependencies
+ - Spring 2.7.3
+ - React.js 18.2
 
 ## Setup
+### React setup
+#### NPM
+[Windows/Mac](https://nodejs.org/en/download/)
+Linux:
+```bash
+npm install -g npm
+```
+#### Yarn
+ - Install yarn: `npm install -g yarn`
+ - Use yarn to download frontend dependencies: `yarn install && yarn build`
 
 ### Spring setup
 #### Java
