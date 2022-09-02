@@ -11,7 +11,6 @@ class App extends React.Component {
     super(props);
     this.state = {
       key: 0,
-      foo: "foo",
     };
   }
 
@@ -27,7 +26,6 @@ class App extends React.Component {
          const data = await response.json();
          this.setState({
            key: data.key,
-           foo: data.foo,
          });
          this.render();
       })
@@ -43,7 +41,7 @@ class App extends React.Component {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ increment: "3" })
+      body: JSON.stringify({ increment: 3 })
     };
     fetch(`${serverAddress}/api/edit`, requestOptions)
       .then(async response => {
@@ -64,7 +62,7 @@ class App extends React.Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Here is your data: {this.state.key} {this.state.foo}
+            Number of times clicked * 3 = {this.state.key}
           </p>
           <button onClick={this.multiplyNumber}>Update</button>
         </header>
