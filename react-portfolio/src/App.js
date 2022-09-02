@@ -41,7 +41,7 @@ class App extends React.Component {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ increment: 3 })
+      body: "3"
     };
     fetch(`${serverAddress}/api/edit`, requestOptions)
       .then(async response => {
