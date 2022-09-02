@@ -2,6 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 
+import config from './config.json';
+
+const serverAddress = config.SERVER_ADDR;
 
 class App extends React.Component {
   constructor(props) {
@@ -14,11 +17,12 @@ class App extends React.Component {
 
   componentDidMount() {
     const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json'},
-      data: {},
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     };
-    fetch('http://localhost:8080/api/', requestOptions)
+    fetch(`${serverAddress}/api/`, requestOptions)
       .then(async response => {
          const data = await response.json();
          this.setState({
