@@ -10,10 +10,8 @@ A custom portfolio website used to display projects and related information
 #### NPM
 [Windows/Mac](https://nodejs.org/en/download/)
 
-Linux:
-```bash
-npm install -g npm
-```
+Linux: `npm install -g npm`
+
 #### Yarn
  - Install yarn: `npm install -g yarn`
  - Use yarn to download frontend dependencies: `yarn install && yarn build`
