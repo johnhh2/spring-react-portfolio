@@ -11,6 +11,7 @@ A custom portfolio website used to display projects and related information
    - [Windows/Mac](https://nodejs.org/en/download/)
    - Linux: `sudo npm install -g npm`
  - Install yarn: `sudo npm install -g yarn`
+ - Go into the react repo: `cd react-portfolio/`
  - Use yarn to download frontend dependencies: `yarn install`
 
 ### Spring setup
