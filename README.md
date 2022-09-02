@@ -9,17 +9,9 @@ A custom portfolio website used to display projects and related information
 ### React setup
  - Install npm:
    - [Windows/Mac](https://nodejs.org/en/download/)
-   - Linux:
-    ```bash
-      npm install -g npm
-    ```
+   - Linux: `npm install -g npm`
  - Install yarn: `npm install -g yarn`
- - User yarn to download frontend dependencies: `yarn install`
-
-### React startup
-```bash
-yarn start
-```
+ - Use yarn to download frontend dependencies: `yarn install`
 
 ### Spring setup
 #### Java
@@ -27,8 +19,14 @@ You will need [JDK 17](https://www.oracle.com/java/technologies/downloads/#java1
 #### Maven
 Additionally, download and extract [Maven 3.8.6](https://maven.apache.org/download.cgi).
 
+## Startup 
+### React startup
+```bash
+yarn start
+```
+
 ### Spring startup
-Run the following command to start a test server displaying the Spring boilerplate test page at [localhost:8080](localhost:8080):
+Run the following command to start a server running the home page at [localhost:8080](localhost:8080):
 ```bash
 ./backend/mvnw spring-boot:run
 ```
