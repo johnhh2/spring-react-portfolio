@@ -35,7 +35,7 @@ class App extends React.Component {
       });
   }
 
-  multiplyNumber() {
+  incrementNumber() {
     const requestOptions = {
       method: 'POST',
       headers: {
@@ -64,7 +64,7 @@ class App extends React.Component {
           <p>
             Number of times clicked * 3 = {this.state.key}
           </p>
-          <button onClick={this.multiplyNumber}>Update</button>
+          <button onClick={this.incrementNumber.bind(this)}>Update</button>
         </header>
       </div>
     );
