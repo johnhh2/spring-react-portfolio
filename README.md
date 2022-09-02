@@ -9,6 +9,7 @@ A custom portfolio website used to display projects and related information
 ### React setup
 #### NPM
 [Windows/Mac](https://nodejs.org/en/download/)
+
 Linux:
 ```bash
 npm install -g npm
