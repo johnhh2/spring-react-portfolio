@@ -37,6 +37,27 @@ class App extends React.Component {
       });
   }
 
+  multiplyNumber() {
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ increment: "3" })
+    };
+    fetch(`${serverAddress}/api/edit`, requestOptions)
+      .then(async response => {
+        const data = await response.json();
+        this.setState({
+          key: data.key,
+        });
+      })
+      .catch(error => {
+        this.setState({ errorMessage: error.toString() });
+        console.error('Error', error);
+      });
+  }
+
   render() {
     return (
       <div className="App">
@@ -45,6 +66,7 @@ class App extends React.Component {
           <p>
             Here is your data: {this.state.key} {this.state.foo}
           </p>
+          <button onClick={this.multiplyNumber}>Update</button>
         </header>
       </div>
     );
