@@ -26,7 +26,7 @@ public class ApiController {
         }
 
         public String toString() {
-            return "{\"key\": " + this.key + ", \"foo\": \"bar\"}";
+            return "{\"key\": " + this.key + "}";
         }
     }
 
@@ -37,9 +37,11 @@ public class ApiController {
 	public String json() {
 		return this.response.toString();
 	}
-    @RequestMapping(value="/api/edit", method=RequestMethod.POST)
-    public int edit(@RequestBody int val) {
-        return this.response.increment_by(val);
+    @RequestMapping(value="/api/edit", method=RequestMethod.POST,
+                    produces=MediaType.APPLICATION_JSON_VALUE)
+    public String edit(@RequestBody int val) {
+        this.response.increment_by(val);
+		return this.response.toString();
     }
 
 }
