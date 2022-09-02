@@ -8,6 +8,7 @@ A custom portfolio website used to display projects and related information
 ## Setup
 ### React setup
 #### NPM
+Download the node package manager (npm).
 [Windows/Mac](https://nodejs.org/en/download/)
 
 Linux: `npm install -g npm`
@@ -26,5 +27,5 @@ Additionally, download and extract [Maven 3.8.6](https://maven.apache.org/downlo
 ### Spring startup
 Run the following command to start a test server displaying the Spring boilerplate test page at [localhost:8080](localhost:8080):
 ```bash
-backend/mvnw spring-boot:run
+./backend/mvnw spring-boot:run
 ```
