@@ -7,13 +7,12 @@ A custom portfolio website used to display projects and related information
 
 ## Setup
 ### React setup
-#### NPM
- - [Windows/Mac](https://nodejs.org/en/download/)
- - Linux:
-```bash
-npm install -g npm
-```
-#### Yarn
+ - Install npm:
+   - [Windows/Mac](https://nodejs.org/en/download/)
+   - Linux:
+    ```bash
+      npm install -g npm
+    ```
  - Install yarn: `npm install -g yarn`
  - User yarn to download frontend dependencies: `yarn install`
 
@@ -31,5 +30,5 @@ Additionally, download and extract [Maven 3.8.6](https://maven.apache.org/downlo
 ### Spring startup
 Run the following command to start a test server displaying the Spring boilerplate test page at [localhost:8080](localhost:8080):
 ```bash
-backend/mvnw spring-boot:run
+./backend/mvnw spring-boot:run
 ```
