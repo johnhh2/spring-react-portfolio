@@ -8,5 +8,5 @@ A custom portfolio website used to display projects and related information
 ## Frontend setup
  - Download npm
  - Install yarn: `npm install -g yarn`
- - User yarn to download frontend dependencies: `yarn install && yarn build`
+ - User yarn to download frontend dependencies: `yarn install`
 
