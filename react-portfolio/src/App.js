@@ -49,6 +49,7 @@ class App extends React.Component {
         this.setState({
           key: data.key,
         });
+        this.render();
       })
       .catch(error => {
         this.setState({ errorMessage: error.toString() });
