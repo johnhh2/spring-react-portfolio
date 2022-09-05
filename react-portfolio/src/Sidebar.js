@@ -16,8 +16,8 @@ class Sidebar extends React.Component {
         googleIcon: "home",
       },
       {
-        name: "Resume",
-        href: "/",
+        name: "Test",
+        href: "/test",
         googleIcon: "description",
       }
     ];
