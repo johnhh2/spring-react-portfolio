@@ -7,6 +7,7 @@
 .Home-framework {
   align-items: center;
   display: flex;
+  margin-bottom: 1vh;
 }
 
 .Spring-logo {
@@ -34,6 +35,15 @@
   align-items: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.Home-header h1 {
+  margin: 0 0 1vh 0;
+}
+
+.Home-authors {
+  font-size: calc(2vmin);
+  margin-bottom: 1vh;
 }
 
 .Home-link {
