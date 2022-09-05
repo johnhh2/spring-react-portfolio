@@ -9,6 +9,13 @@ class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {hideNav: false};
+    this.buttons = [
+      {
+        name: "Home",
+        href: "/",
+        googleIcon: "",
+      }
+    ];
   }
 
   componentDidMount() {
@@ -31,7 +38,10 @@ class Sidebar extends React.Component {
     if (this.state.hideNav != true) {
        return (
          <div className="Sidebar">
-           <a className="Sidebar-tab">Home</a>
+           {
+             this.buttons.map((button, index) =>
+               React.createElement("a", { className: "Sidebar-tab", href: button.href }, button.name))
+           }
          </div>
        );
     } else {
