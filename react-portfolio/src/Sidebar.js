@@ -38,6 +38,7 @@ class Sidebar extends React.Component {
     if (this.state.hideNav != true) {
        return (
          <div className="Sidebar">
+           <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"></link>
            {
              this.buttons.map((button, index) =>
                React.createElement("a", { className: "Sidebar-tab", href: button.href }, button.name))
