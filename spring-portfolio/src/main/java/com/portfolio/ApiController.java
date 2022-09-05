@@ -1,4 +1,4 @@
-package com.example.springboot;
+package com.portfolio;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -33,48 +33,25 @@ public class ApiController {
         }
     }
 
-    private class User {
-
-        private int key;
-        private String username;
-        private String email;
-        private boolean dark_mode;
-        private int age;
-
-        public User(int key, String username, String email,
-                                boolean dark_mode, int age) {
-            this.key = key;
-            this.username = username;
-            this.email = email;
-            this.dark_mode = dark_mode;
-            this.age = age;
-        }
-
-        public String toString() {
-            return String.format(
-                "{\"key\": %s, \"username\": \"%s\", \"email\": \"%s\", \"dark_mode\": %s, \"age\": %s}",
-                this.key, this.username, this.email, this.dark_mode, this.age);
-        }
-    }
 
     public JSONResponse response = new JSONResponse(0);
     public Map<Integer, User> users = new HashMap<Integer, User>();
 
-	@RequestMapping(value="/api", method=RequestMethod.GET,
+    @RequestMapping(value="/api", method=RequestMethod.GET,
                     produces=MediaType.APPLICATION_JSON_VALUE)
-	public String json() {
-		return this.response.toString();
-	}
+    public String json() {
+        return this.response.toString();
+    }
 
     @RequestMapping(value="/api/edit", method=RequestMethod.POST,
                     produces=MediaType.APPLICATION_JSON_VALUE)
     public String edit(@RequestBody Map<String, Integer> request_body) {
         int num = request_body.get("increment");
         this.response.increment_by(num);
-		return this.response.toString();
+        return this.response.toString();
     }
 
-	@RequestMapping(value="/api/get_user", method=RequestMethod.GET,
+    @RequestMapping(value="/api/get_user", method=RequestMethod.GET,
                     produces=MediaType.APPLICATION_JSON_VALUE)
     public String get_user(@RequestParam int key) {
         // TODO: Validate the key
