@@ -1,0 +1,19 @@
+.Sidebar {
+  width: 200px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  display: block;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+}
+
+.Sidebar .Sidebar-tab {
+  height: 4rem;
+  line-height: 4rem;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eeeeee;
+}
