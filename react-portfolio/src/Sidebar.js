@@ -13,7 +13,12 @@ class Sidebar extends React.Component {
       {
         name: "Home",
         href: "/",
-        googleIcon: "",
+        googleIcon: "home",
+      },
+      {
+        name: "Resume",
+        href: "/",
+        googleIcon: "description",
       }
     ];
   }
@@ -36,12 +41,17 @@ class Sidebar extends React.Component {
 
   render() {
     if (this.state.hideNav != true) {
-       return (
-         <div className="Sidebar">
-           <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"></link>
-           {
-             this.buttons.map((button, index) =>
-               React.createElement("a", { className: "Sidebar-tab", href: button.href }, button.name))
+      return (
+        <div className="Sidebar">
+          <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"></link>
+          {
+            this.buttons.map((button, index) => React.createElement(
+              "a", { className: "Sidebar-tab", href: button.href },
+              React.createElement(
+                "span", { className: "material-icons-outlined" },
+                button.googleIcon),
+              button.name)
+            )
            }
          </div>
        );
