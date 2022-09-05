@@ -20,6 +20,12 @@
   margin: 0.75rem 1rem;
   text-decoration: none;
   color: #000000;
+  transition: 0.3s ease-out;
+}
+
+.Sidebar .Sidebar-tab:hover {
+  opacity: 1;
+  transition: none;
 }
 
 .material-icons-outlined {

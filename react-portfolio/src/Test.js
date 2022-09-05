@@ -1,12 +1,12 @@
 import logo from './logo.svg';
-import './App.css';
+import './Test.css';
 import React from 'react';
 
 import config from './config.json';
 
 const serverAddress = config.SERVER_ADDR;
 
-class App extends React.Component {
+class Test extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -58,9 +58,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+      <div className="Test">
+        <header className="Test-header">
+          <img src={logo} className="Test-logo" alt="logo" />
           <p>
             Number of times clicked * 3 = {this.state.key}
           </p>
@@ -71,4 +71,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default Test;
