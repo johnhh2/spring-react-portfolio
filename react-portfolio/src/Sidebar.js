@@ -29,11 +29,12 @@ class Sidebar extends React.Component {
 
   render() {
     if (this.state.hideNav != true) {
-       return (
-         <div className="Sidebar">
-           <a className="Sidebar-tab">Home</a>
-         </div>
-       );
+      return (
+        <div className="Sidebar">
+          <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"></link>
+          <a className="Sidebar-tab"><span class="material-icons-outlined">home</span>Home</a>
+        </div>
+      );
     } else {
       return null;
     }
