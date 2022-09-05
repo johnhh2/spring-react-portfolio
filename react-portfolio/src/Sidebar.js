@@ -4,12 +4,7 @@ import React from 'react';
 import config from './config.json';
 
 const serverAddress = config.SERVER_ADDR;
-
-class Sidebar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {hideNav: false};
-    this.buttons = [
+const PAGES = [
       {
         name: "Home",
         href: "/",
@@ -18,7 +13,7 @@ class Sidebar extends React.Component {
       {
         name: "Test",
         href: "/test",
-        googleIcon: "description",
+        googleIcon: "info",
       },
       {
         name: "User Management",
@@ -26,6 +21,11 @@ class Sidebar extends React.Component {
         googleIcon: "person",
       },
     ];
+
+class Sidebar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {hideNav: false};
   }
 
   componentDidMount() {
@@ -50,7 +50,7 @@ class Sidebar extends React.Component {
         <div className="Sidebar">
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"></link>
           {
-            this.buttons.map((button, index) => React.createElement(
+            PAGES.map((button, index) => React.createElement(
               "a", { className: "Sidebar-tab", href: button.href },
               React.createElement(
                 "span", { className: "material-icons-outlined" },

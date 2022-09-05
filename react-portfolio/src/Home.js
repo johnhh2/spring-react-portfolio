@@ -27,9 +27,9 @@ class Home extends React.Component {
           <div className="Home-framework">
 	    Created with
             <img src={logo} className="React-logo" alt="logo" />
-	    React and
+	    React.js and
             <img src={springLogo} className="Spring-logo" alt="logo" />
-            Spring.js
+            Spring
           </div>
             
         </header>
