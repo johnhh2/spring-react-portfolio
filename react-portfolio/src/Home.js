@@ -1,5 +1,5 @@
-import logo from './logo.svg';
-import springLogo from './spring-logo.svg';
+import logo from './images/logo.svg';
+import springLogo from './images/spring-logo.svg';
 import './Home.css';
 import React from 'react';
 
@@ -10,7 +10,7 @@ const serverAddress = config.SERVER_ADDR;
 class Home extends React.Component {
 
   render() {
-    let authors = config.AUTHORS;
+    let authors = [...config.AUTHORS];
     if (Math.random() < 0.5) {
       authors = authors.reverse();
     }
