@@ -56,6 +56,31 @@ class Test extends React.Component {
       });
   }
 
+  createTestUser() {
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ key: 0, username: "testuser", email: "test@user.com", dark_mode: true, age: 25})
+    };
+    fetch(`${serverAddress}/api/create_user`, requestOptions)
+      .then(async response => {
+        const data = await response.json();
+        console.log(data)
+        if (data.success) {
+          console.log("user created: " + data.user.toString());
+          this.render();
+        }
+        else {
+          console.error("An error occurred while creating the test user.");
+        }
+      })
+      .catch(error => {
+        console.error('Error', error);
+      });
+  }
+
   render() {
     return (
       <div className="Test">
@@ -65,6 +90,7 @@ class Test extends React.Component {
             Number of times clicked * 3 = {this.state.key}
           </p>
           <button onClick={this.incrementNumber.bind(this)}>Update</button>
+          <button onClick={this.createTestUser.bind(this)}>Create Test User</button>
         </header>
       </div>
     );
