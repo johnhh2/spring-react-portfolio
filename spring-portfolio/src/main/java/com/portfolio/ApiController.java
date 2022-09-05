@@ -64,10 +64,9 @@ public class ApiController {
         int key = Integer.parseInt(request_body.get("key"));
         String username = request_body.get("username");
         String email = request_body.get("email");
-        boolean dark_mode = Boolean.parseBoolean(request_body.get("dark_mode"));
         int age = Integer.parseInt(request_body.get("age"));
         // TODO: Add validation for fields
-        User user = new User(key, username, email, dark_mode, age);
+        User user = new User(key, username, email, age);
         this.users.put(key, user);
         return "{ \"success\": true, \"user\": " + user.toString() + "}";
     }
