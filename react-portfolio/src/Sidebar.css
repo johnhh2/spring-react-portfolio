@@ -3,9 +3,10 @@
   height: 100vh;
   position: sticky;
   top: 0;
-  display: block;
   padding: 0.5rem 1rem;
   display: inline-block;
+  background: rgb(34,195,161);
+  background: linear-gradient(190deg, rgba(34,195,161,1) 0%, rgba(93,45,253,1) 100%);
 }
 
 .Sidebar .Sidebar-tab {
