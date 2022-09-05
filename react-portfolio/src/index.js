@@ -6,6 +6,7 @@ import './index.css';
 import Sidebar from './Sidebar';
 import Home from './Home';
 import Test from './Test';
+import UserManagement from './UserManagement';
 
 
 import reportWebVitals from './reportWebVitals';
@@ -18,6 +19,7 @@ root.render(
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/test" element={<Test/>}/>
+          <Route path="/users" element={<UserManagement/>}/>
         </Routes>
       </BrowserRouter>
   </React.StrictMode>

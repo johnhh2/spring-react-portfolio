@@ -19,7 +19,12 @@ class Sidebar extends React.Component {
         name: "Test",
         href: "/test",
         googleIcon: "description",
-      }
+      },
+      {
+        name: "User Management",
+        href: "/users",
+        googleIcon: "person",
+      },
     ];
   }
 
