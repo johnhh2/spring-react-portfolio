@@ -4,7 +4,7 @@ import config from './config.json';
 
 const serverAddress = config.SERVER_ADDR;
 
-class Portfolio extends React.Component {
+class UserManagement extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,4 +47,4 @@ class Portfolio extends React.Component {
   }
 }
 
-export default Portfolio;
+export default UserManagement;

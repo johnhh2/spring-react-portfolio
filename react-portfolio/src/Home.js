@@ -5,8 +5,6 @@ import React from 'react';
 
 import config from './config.json';
 
-const serverAddress = config.SERVER_ADDR;
-
 class Home extends React.Component {
 
   render() {

@@ -1,9 +1,6 @@
 import './Sidebar.css';
 import React from 'react';
 
-import config from './config.json';
-
-const serverAddress = config.SERVER_ADDR;
 const PAGES = [
       {
         name: "Home",
@@ -45,7 +42,7 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    if (this.state.hideNav != true) {
+    if (this.state.hideNav !== true) {
       return (
         <div className="Sidebar">
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"></link>
