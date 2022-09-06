@@ -55,7 +55,21 @@ public class ApiController {
                     produces=MediaType.APPLICATION_JSON_VALUE)
     public String get_user(@RequestParam int key) {
         // TODO: Validate the key
-        return this.users.get(key).toString();
+        User user = this.users.get(key);
+        if (user != null) {
+            return user.toString();
+        }
+        return null;
+    }
+
+    @RequestMapping(value="/api/get_users", method=RequestMethod.GET,
+                    produces=MediaType.APPLICATION_JSON_VALUE)
+    public String get_users() {
+        String out = "{";
+        for (Map.Entry<Integer, User> entry: this.users.entrySet()) {
+            out += entry.getKey() + ": " + entry.getValue().toString() + ", ";
+        }
+        return out + "}";
     }
 
     @RequestMapping(value="/api/create_user", method=RequestMethod.POST,
