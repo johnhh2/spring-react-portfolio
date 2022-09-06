@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './UserManagement.css'
 import config from './config.json';
 
 const serverAddress = config.SERVER_ADDR;
@@ -38,8 +38,8 @@ class UserManagement extends React.Component {
 
   render() {
     return (
-      <div className="Test">
-        <header className="Test-header">
+      <div className="UserManagement">
+        <header className="UserManagement-header">
           <button onClick={this.createTestUser.bind(this)}>Create Test User</button>
         </header>
       </div>
