@@ -8,14 +8,14 @@ const PAGES = [
         googleIcon: "home",
       },
       {
-        name: "Test",
-        href: "/test",
-        googleIcon: "info",
-      },
-      {
         name: "User Management",
         href: "/users",
         googleIcon: "person",
+      },
+      {
+        name: "Test",
+        href: "/test",
+        googleIcon: "info",
       },
     ];
 
@@ -45,7 +45,7 @@ class Sidebar extends React.Component {
     if (this.state.hideNav !== true) {
       return (
         <div className="Sidebar">
-          <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"></link>
+          <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
           {
             PAGES.map((button, index) => React.createElement(
               "a", { className: "Sidebar-tab", href: button.href },
