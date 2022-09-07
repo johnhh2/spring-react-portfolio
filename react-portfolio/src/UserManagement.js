@@ -30,6 +30,10 @@ class UserManagement extends React.Component {
         console.error("Unexpected event target: ", event.target);
         break;
     }
+    let response = document.getElementById('form-response');
+    if (response.innerHTML) {
+      response.innerHTML = "";
+    }
   }
 
   handleSubmit(event) {
@@ -49,12 +53,18 @@ class UserManagement extends React.Component {
         const data = await response.json();
         console.log(data)
         if (data.success) {
-          console.log("user created: " + data.user.toString());
-          this.setState({key: this.state.key + 1});
+          this.setState({
+            key: this.state.key + 1,
+            username: "",
+            email: "",
+            age: 0});
+          let response = document.getElementById('form-response');
+          response.innerHTML = "User created successfully.<br>";
           this.render();
         }
         else {
-          console.error("An error occurred while creating the test user.");
+          // TODO: Display reason for error
+          response.innerHTML = "An error occurred while creating the user.";
         }
       })
       .catch(error => {
@@ -74,6 +84,7 @@ class UserManagement extends React.Component {
           <input type="email" id="email" name="email" value={this.state.email} onChange={this.handleChange.bind(this)} /><br />
           <label htmlFor="age">Age: </label>
           <input type="number" id="age" name="age" value={this.state.age} onChange={this.handleChange.bind(this)} /><br />
+          <span id='form-response'></span>
           <input type="submit" id="submit" name="Create User" />
           </form>
         </header>
