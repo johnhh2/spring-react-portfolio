@@ -15,25 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ApiController {
 
-    private class JSONResponse {
-
-        private int key;
-
-        public JSONResponse(int val) {
-            this.key = val;
-        }
-
-        public int increment_by(int val) {
-            this.key += val;
-            return this.key;
-        }
-
-        public String toString() {
-            return "{\"key\": " + this.key + "}";
-        }
-    }
-
-
     public JSONResponse response = new JSONResponse(0);
     public Map<Integer, User> users = new HashMap<Integer, User>();
 
@@ -82,6 +63,7 @@ public class ApiController {
         // TODO: Add validation for fields
         User user = new User(key, username, email, age);
         this.users.put(key, user);
+        // TODO: Return success: false on error
         return "{ \"success\": true, \"user\": " + user.toString() + "}";
     }
 
