@@ -17,9 +17,9 @@ public class HostnameController {
     /*@Autowired
     private HostnameRepository repo;*/
 
-    @RequestMapping(value="/api/get_hostname", method=RequestMethod.GET,
+    @RequestMapping(value="/api/get_portfolio", method=RequestMethod.GET,
                     produces=MediaType.APPLICATION_JSON_VALUE)
-    public String get_hostname(@RequestParam String hostname) {
+    public String get_portfolio() {
         /* TODO: Query Hostnames to find user of the hostnames portfolio */
         /* repo.findById(hostname) */
         /* TODO: Gather categories and projects and add them to the JSON */
