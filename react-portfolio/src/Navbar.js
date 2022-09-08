@@ -6,7 +6,7 @@ import config from './config.json';
 const serverAddress = config.SERVER_ADDR;
 
 
-class Navbar extends React.Component {
+export default class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -116,4 +116,3 @@ class Navbar extends React.Component {
     }
   }
 }
-export default Navbar;

@@ -5,7 +5,7 @@ import React from 'react';
 
 import config from './config.json';
 
-class Info extends React.Component {
+export default class Info extends React.Component {
 
   render() {
     let authors = [...config.AUTHORS];
@@ -35,5 +35,3 @@ class Info extends React.Component {
     );
   }
 }
-
-export default Info;

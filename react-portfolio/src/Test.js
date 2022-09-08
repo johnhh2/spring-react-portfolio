@@ -6,7 +6,7 @@ import config from './config.json';
 
 const serverAddress = config.SERVER_ADDR;
 
-class Test extends React.Component {
+export default class Test extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -70,5 +70,3 @@ class Test extends React.Component {
     );
   }
 }
-
-export default Test;
