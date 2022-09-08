@@ -10,7 +10,6 @@ class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hostName: window.location.hostname,
       hideSidebar: false,
       pages: this.getPages(),
     };
@@ -26,7 +25,7 @@ class Navbar extends React.Component {
         'Content-Type': 'application/json',
       },
     };
-    fetch(`${serverAddress}/api/get_portfolio/?hostname=${this.state.hostName}`, requestOptions)
+    fetch(`${serverAddress}/api/get_portfolio/`, requestOptions)
       .then(async response => {
         const data = await response.json();
         this.setState({

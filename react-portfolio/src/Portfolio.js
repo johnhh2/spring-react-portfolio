@@ -11,7 +11,6 @@ class Portfolio extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hostName: window.location.hostname,
       realname: null,
       projects: null,
     };
@@ -24,7 +23,7 @@ class Portfolio extends React.Component {
         'Content-Type': 'application/json',
       },
     };
-    fetch(`${serverAddress}/api/get_portfolio/?hostname=${this.state.hostName}`, requestOptions)
+    fetch(`${serverAddress}/api/get_portfolio/`, requestOptions)
       .then(async response => {
          const data = await response.json();
          this.setState({
