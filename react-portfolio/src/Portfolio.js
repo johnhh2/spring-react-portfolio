@@ -23,7 +23,7 @@ class Portfolio extends React.Component {
         'Content-Type': 'application/json',
       },
     };
-    fetch(`${serverAddress}/api/get_portfolio/`, requestOptions)
+    fetch(`${serverAddress}/api/portfolio/get`, requestOptions)
       .then(async response => {
          const data = await response.json();
          this.setState({

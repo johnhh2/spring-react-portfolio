@@ -25,7 +25,7 @@ class Navbar extends React.Component {
         'Content-Type': 'application/json',
       },
     };
-    fetch(`${serverAddress}/api/get_portfolio/`, requestOptions)
+    fetch(`${serverAddress}/api/portfolio/get`, requestOptions)
       .then(async response => {
         const data = await response.json();
         this.setState({
@@ -101,7 +101,7 @@ class Navbar extends React.Component {
         <div className="Sidebar">
           {
             this.state.pages.map((button, index) => React.createElement(
-              "a", { className: "Sidebar-tab", href: button.href },
+              "a", { key: index, className: "Sidebar-tab", href: button.href },
               React.createElement(
                 "span", { className: "material-icons-outlined" },
                 button.googleIcon),
