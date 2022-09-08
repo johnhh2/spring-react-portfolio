@@ -94,23 +94,26 @@ export default class Navbar extends React.Component {
   }
 
   render() {
-    let icons = <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"></link>;
+    let icons = <link key='link' href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"></link>;
 
     if (this.state.hideSidebar !== true) {
       return [icons, (
-        <div className="Sidebar">
+        <div key='div' className="Sidebar">
           {
             this.state.pages.map((button, index) => React.createElement(
-              "a", { key: index, className: "Sidebar-tab", href: button.href },
+              "a", {key: `a${index}`,
+                    className: "Sidebar-tab",
+                    href: button.href},
               React.createElement(
-                "span", { className: "material-icons-outlined" },
+                "span", {key: `span${index}`,
+                         className: "material-icons-outlined"},
                 button.googleIcon),
               button.name)
             )
-           }
-         </div>
-       )
-     ];
+          }
+        </div>
+      )
+    ];
     } else {
       return null;
     }
