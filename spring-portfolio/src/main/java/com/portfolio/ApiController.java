@@ -49,9 +49,13 @@ public class ApiController {
     public String get_users() {
         String out = "{";
         for (Map.Entry<Integer, User> entry: this.users.entrySet()) {
-            out += entry.getKey() + ": " + entry.getValue().toString() + ", ";
+            out += "\"" + entry.getKey() + "\": " + entry.getValue().toString() + ", ";
         }
-        return out + "}";
+        if (out.length() > 2) {
+            out = out.substring(0, out.length() - 2); // Remove trailing ", "
+        }
+        out += "}";
+        return out;
     }
 
     @RequestMapping(value="/create_user", method=RequestMethod.POST,
