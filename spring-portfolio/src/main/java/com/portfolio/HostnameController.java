@@ -13,11 +13,12 @@ import org.json.JSONObject;
 
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
+@RequestMapping(value="/api/portfolio")
 public class HostnameController {
     /*@Autowired
     private HostnameRepository repo;*/
 
-    @RequestMapping(value="/api/get_portfolio", method=RequestMethod.GET,
+    @RequestMapping(value="/get", method=RequestMethod.GET,
                     produces=MediaType.APPLICATION_JSON_VALUE)
     public String get_portfolio() {
         /* TODO: Query Hostnames to find user of the hostnames portfolio */
