@@ -43,7 +43,7 @@ export default class UserView extends React.Component {
                 <tbody>
                   {rows}
                 </tbody>
-                </table>
+              </table>
             </header>
           </div>
         )});

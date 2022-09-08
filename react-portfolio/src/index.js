@@ -9,6 +9,7 @@ import Info from './Info';
 import Test from './Test';
 import UserCreate from './UserCreate';
 import UserView from './UserView';
+import UserSingleView from './UserSingleView';
 
 
 import reportWebVitals from './reportWebVitals';
@@ -24,6 +25,7 @@ root.render(
           <Route path="/test" element={<Test/>}/>
           <Route path="/users/create" element={<UserCreate/>}/>
           <Route path="/users/view" element={<UserView/>}/>
+          <Route path="/users/view/:id" element={<UserSingleView/>}/>
         </Routes>
       </BrowserRouter>
   </React.StrictMode>

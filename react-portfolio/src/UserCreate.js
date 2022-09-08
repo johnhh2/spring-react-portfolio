@@ -52,13 +52,16 @@ export default class UserCreate extends React.Component {
       .then(async response => {
         const data = await response.json();
         if (data.success) {
+          let user = data.user;
           this.setState({
             id: this.state.id + 1,
             username: "",
             email: "",
             age: 0});
           let form_response = document.getElementById('form-response');
-          form_response.innerHTML = "User created successfully.<br><a href=/users/view>View</a><br>";
+          form_response.innerHTML = `User created successfully.<br>
+            <a href="view/${user.id}">View ${user.username}</a><br>
+            <a href="view">View All Users</a><br>`;
           this.render();
         } else {
           // TODO: Display reason for error
@@ -85,6 +88,7 @@ export default class UserCreate extends React.Component {
           <span id='form-response'></span>
           <input type="submit" id="submit" name="Create User" />
           </form>
+          <a href="view">View All Users</a>
         </header>
       </div>
     );
