@@ -29,5 +29,7 @@
 
 .material-icons-outlined {
   padding-left: 1.5rem;
-  padding-right: 0.5rem
+  padding-right: 0.5rem;
+  width: 24px;
+  height: 24px;
 }
