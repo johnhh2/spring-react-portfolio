@@ -8,7 +8,7 @@ export default class UserCreate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        key: 0,
+        id: 0,
         username: "",
         email: "",
         age: 0
@@ -43,7 +43,7 @@ export default class UserCreate extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        key: this.state.key,
+        id: this.state.id,
         username: this.state.username,
         email: this.state.email,
         age: this.state.age})
@@ -53,7 +53,7 @@ export default class UserCreate extends React.Component {
         const data = await response.json();
         if (data.success) {
           this.setState({
-            key: this.state.key + 1,
+            id: this.state.id + 1,
             username: "",
             email: "",
             age: 0});

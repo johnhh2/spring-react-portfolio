@@ -26,7 +26,7 @@ export default class UserView extends React.Component {
 
         for (let key in data) {
             let user = data[key]
-            const content = <tr key={key}><td>{user.key}</td>
+            const content = <tr key={key}><td>{user.id}</td>
                       <td>{user.username}</td>
                       <td>{user.email}</td><td>{user.age}</td></tr>;
             rows.push(content);
@@ -38,7 +38,7 @@ export default class UserView extends React.Component {
             <header className="UserManagement-header">
               <table border="1">
                 <thead>
-                  <tr><th>Key</th><th>Username</th><th>Email</th><th>Age</th></tr>
+                  <tr><th>ID</th><th>Username</th><th>Email</th><th>Age</th></tr>
                 </thead>
                 <tbody>
                   {rows}

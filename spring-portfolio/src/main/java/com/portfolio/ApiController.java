@@ -1,7 +1,8 @@
 package com.portfolio;
 
 import java.util.Map;
-import java.util.HashMap;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value="/api", produces=MediaType.APPLICATION_JSON_VALUE)
 public class ApiController {
 
+    @Autowired
+    private UserRepository user_repository;
+
     public JSONResponse response = new JSONResponse(0);
-    public Map<Integer, User> users = new HashMap<Integer, User>();
 
     @GetMapping("/")
     public String json() {
@@ -34,20 +37,21 @@ public class ApiController {
     }
 
     @GetMapping("get_user")
-    public String get_user(@RequestParam int key) {
-        // TODO: Validate the key
-        User user = this.users.get(key);
-        if (user != null) {
-            return user.toString();
+    public String get_user(@RequestParam int id) {
+        // TODO: Validate the id
+        Optional<User> user = user_repository.findById(id);
+        if (user.isPresent()) {
+            return user.get().toString();
         }
         return null;
     }
 
     @GetMapping("get_users")
     public String get_users() {
+        Iterable<User> all_users =  user_repository.findAll();
         String out = "{";
-        for (Map.Entry<Integer, User> entry: this.users.entrySet()) {
-            out += "\"" + entry.getKey() + "\": " + entry.getValue().toString() + ", ";
+        for (User user : all_users) {
+            out += "\"" + user.getId() + "\": " + user.toString() + ", ";
         }
         if (out.length() > 2) {
             out = out.substring(0, out.length() - 2); // Remove trailing ", "
@@ -58,13 +62,13 @@ public class ApiController {
 
     @PostMapping("create_user")
     public String create_user(@RequestBody Map<String, String> request_body) {
-        int key = Integer.parseInt(request_body.get("key"));
+        int id = Integer.parseInt(request_body.get("id"));
         String username = request_body.get("username");
         String email = request_body.get("email");
         int age = Integer.parseInt(request_body.get("age"));
         // TODO: Add validation for fields
-        User user = new User(key, username, email, age);
-        this.users.put(key, user);
+        User user = new User(id, username, email, age);
+        user_repository.save(user);
         // TODO: Return success: false on error
         return "{ \"success\": true, \"user\": " + user.toString() + "}";
     }

@@ -9,23 +9,31 @@ import javax.persistence.Id;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int key;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String username;
     private String email;
     private int age;
 
-    public User(int key, String username, String email, int age) {
-        this.key = key;
+    public User() {
+        this.id = 0;
+        this.username = "";
+        this.email = "";
+        this.age = 0;
+    }
+
+    public User(int id, String username, String email, int age) {
+        this.id = id;
         this.username = username;
         this.email = email;
         this.age = age;
     }
 
+    public int getId() { return this.id; }
+
     public String toString() {
         return String.format(
-            "{\"key\": %s, \"username\": \"%s\", \"email\": \"%s\", \"age\": %s}",
-            this.key, this.username, this.email, this.age);
+            "{\"id\": %s, \"username\": \"%s\", \"email\": \"%s\", \"age\": %s}",
+            this.id, this.username, this.email, this.age);
     }
 }
-
