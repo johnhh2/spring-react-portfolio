@@ -13,18 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
+@RequestMapping("/api")
 public class ApiController {
 
     public JSONResponse response = new JSONResponse(0);
     public Map<Integer, User> users = new HashMap<Integer, User>();
 
-    @RequestMapping(value="/api", method=RequestMethod.GET,
+    @RequestMapping(value="/", method=RequestMethod.GET,
                     produces=MediaType.APPLICATION_JSON_VALUE)
     public String json() {
         return this.response.toString();
     }
 
-    @RequestMapping(value="/api/edit", method=RequestMethod.POST,
+    @RequestMapping(value="/edit", method=RequestMethod.POST,
                     produces=MediaType.APPLICATION_JSON_VALUE)
     public String edit(@RequestBody Map<String, Integer> request_body) {
         int num = request_body.get("increment");
@@ -32,7 +33,7 @@ public class ApiController {
         return this.response.toString();
     }
 
-    @RequestMapping(value="/api/get_user", method=RequestMethod.GET,
+    @RequestMapping(value="/get_user", method=RequestMethod.GET,
                     produces=MediaType.APPLICATION_JSON_VALUE)
     public String get_user(@RequestParam int key) {
         // TODO: Validate the key
@@ -43,7 +44,7 @@ public class ApiController {
         return null;
     }
 
-    @RequestMapping(value="/api/get_users", method=RequestMethod.GET,
+    @RequestMapping(value="/get_users", method=RequestMethod.GET,
                     produces=MediaType.APPLICATION_JSON_VALUE)
     public String get_users() {
         String out = "{";
@@ -53,7 +54,7 @@ public class ApiController {
         return out + "}";
     }
 
-    @RequestMapping(value="/api/create_user", method=RequestMethod.POST,
+    @RequestMapping(value="/create_user", method=RequestMethod.POST,
                     produces=MediaType.APPLICATION_JSON_VALUE)
     public String create_user(@RequestBody Map<String, String> request_body) {
         int key = Integer.parseInt(request_body.get("key"));
