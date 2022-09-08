@@ -31,21 +31,22 @@ export default class Navbar extends React.Component {
         this.setState({
           realname: data.realname,
           categories: data.categories,
-        });
-        if (this.state.categories != null) {
-          let newPages = this.state.categories.map(category =>
-            ({
-              name: category.name,
-              href: "/" + category.slug,
-              googleIcon: category.googleIcon,
-            })
-	  );
+        }, () => {
+          if (this.state.categories != null) {
+            let newPages = this.state.categories.map(category =>
+              ({
+                name: category.name,
+                href: "/" + category.slug,
+                googleIcon: category.googleIcon,
+              }));
 
-          this.setState({
-            'pages': this.getPages(newPages),
-          });
-          this.render();
-        }
+            this.setState({
+              pages: this.getPages(newPages),
+            }, () => {
+              this.render();
+            });
+          }
+        });
       })
       .catch(error => {
         this.setState({ errorMessage: error.toString() });
