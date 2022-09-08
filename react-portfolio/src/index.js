@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom/client';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import './index.css';
 
-import Sidebar from './Sidebar';
-import Home from './Home';
+import Portfolio from './Portfolio';
+import Navbar from './Navbar';
+import Info from './Info';
 import Test from './Test';
 import UserManagement from './UserManagement';
 
@@ -14,10 +15,11 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Sidebar />
+    <Navbar />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home/>}/>
+          <Route path="/" element={<Portfolio/>}/>
+          <Route path="/info" element={<Info/>}/>
           <Route path="/test" element={<Test/>}/>
           <Route path="/users" element={<UserManagement/>}/>
         </Routes>

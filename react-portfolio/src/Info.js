@@ -1,13 +1,13 @@
 import logo from './images/logo.svg';
 import springLogo from './images/spring-logo.svg';
-import './Home.css';
+import './Info.css';
 import React from 'react';
 
 import config from './config.json';
 
 const serverAddress = config.SERVER_ADDR;
 
-class Home extends React.Component {
+class Info extends React.Component {
 
   render() {
     let authors = [...config.AUTHORS];
@@ -18,13 +18,13 @@ class Home extends React.Component {
     let authorText = authors.join(', ') + ' and ' + lastAuthor;
     
     return (
-      <div className="Home">
-        <header className="Home-header">
+      <div className="Info">
+        <header className="Info-header">
 	  <h1>Portfolio Project</h1>
-          <div className="Home-authors">
+          <div className="Info-authors">
             by {authorText}
           </div>
-          <div className="Home-framework">
+          <div className="Info-framework">
 	    Created with
             <img src={logo} className="React-logo" alt="logo" />
 	    React.js and
@@ -38,4 +38,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export default Info;

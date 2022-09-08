@@ -1,10 +1,10 @@
-.Home {
+.Info {
   display: inline-block;
   position: absolute;
   width: -webkit-fill-available;
 }
 
-.Home-framework {
+.Info-framework {
   align-items: center;
   display: flex;
   margin-bottom: 1vh;
@@ -23,11 +23,11 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .React-logo {
-    animation: Home-logo-spin infinite 20s linear;
+    animation: Info-logo-spin infinite 20s linear;
   }
 }
 
-.Home-header {
+.Info-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -37,20 +37,20 @@
   color: white;
 }
 
-.Home-header h1 {
+.Info-header h1 {
   margin: 0 0 1vh 0;
 }
 
-.Home-authors {
+.Info-authors {
   font-size: calc(2vmin);
   margin-bottom: 1vh;
 }
 
-.Home-link {
+.Info-link {
   color: #61dafb;
 }
 
-@keyframes Home-logo-spin {
+@keyframes Info-logo-spin {
   from {
     transform: rotate(0deg);
   }
