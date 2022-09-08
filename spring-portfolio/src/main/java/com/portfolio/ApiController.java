@@ -4,6 +4,8 @@ import java.util.Map;
 import java.util.HashMap;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,28 +15,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
-@RequestMapping("/api")
+@RequestMapping(value="/api", produces=MediaType.APPLICATION_JSON_VALUE)
 public class ApiController {
 
     public JSONResponse response = new JSONResponse(0);
     public Map<Integer, User> users = new HashMap<Integer, User>();
 
-    @RequestMapping(value="/", method=RequestMethod.GET,
-                    produces=MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/")
     public String json() {
         return this.response.toString();
     }
 
-    @RequestMapping(value="/edit", method=RequestMethod.POST,
-                    produces=MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping("edit")
     public String edit(@RequestBody Map<String, Integer> request_body) {
         int num = request_body.get("increment");
         this.response.increment_by(num);
         return this.response.toString();
     }
 
-    @RequestMapping(value="/get_user", method=RequestMethod.GET,
-                    produces=MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("get_user")
     public String get_user(@RequestParam int key) {
         // TODO: Validate the key
         User user = this.users.get(key);
@@ -44,8 +43,7 @@ public class ApiController {
         return null;
     }
 
-    @RequestMapping(value="/get_users", method=RequestMethod.GET,
-                    produces=MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("get_users")
     public String get_users() {
         String out = "{";
         for (Map.Entry<Integer, User> entry: this.users.entrySet()) {
@@ -58,8 +56,7 @@ public class ApiController {
         return out;
     }
 
-    @RequestMapping(value="/create_user", method=RequestMethod.POST,
-                    produces=MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping("create_user")
     public String create_user(@RequestBody Map<String, String> request_body) {
         int key = Integer.parseInt(request_body.get("key"));
         String username = request_body.get("username");
