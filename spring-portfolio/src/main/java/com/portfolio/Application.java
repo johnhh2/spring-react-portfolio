@@ -1,4 +1,4 @@
-package com.example.springboot;
+package com.portfolio;
 
 import java.util.Arrays;
 
