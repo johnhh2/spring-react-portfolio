@@ -7,7 +7,8 @@ import Portfolio from './Portfolio';
 import Navbar from './Navbar';
 import Info from './Info';
 import Test from './Test';
-import UserManagement from './UserManagement';
+import UserCreate from './UserCreate';
+import UserView from './UserView';
 
 
 import reportWebVitals from './reportWebVitals';
@@ -21,7 +22,8 @@ root.render(
           <Route path="/" element={<Portfolio/>}/>
           <Route path="/info" element={<Info/>}/>
           <Route path="/test" element={<Test/>}/>
-          <Route path="/users" element={<UserManagement/>}/>
+          <Route path="/users/create" element={<UserCreate/>}/>
+          <Route path="/users/view" element={<UserView/>}/>
         </Routes>
       </BrowserRouter>
   </React.StrictMode>

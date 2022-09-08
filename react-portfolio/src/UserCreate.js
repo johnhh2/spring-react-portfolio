@@ -4,7 +4,7 @@ import config from './config.json';
 
 const serverAddress = config.SERVER_ADDR;
 
-class UserManagement extends React.Component {
+export default class UserCreate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,9 +30,9 @@ class UserManagement extends React.Component {
         console.error("Unexpected event target: ", event.target);
         break;
     }
-    let response = document.getElementById('form-response');
-    if (response.innerHTML) {
-      response.innerHTML = "";
+    let form_response = document.getElementById('form-response');
+    if (form_response.innerHTML) {
+      form_response.innerHTML = "";
     }
   }
 
@@ -51,18 +51,16 @@ class UserManagement extends React.Component {
     fetch(`${serverAddress}/api/create_user`, requestOptions)
       .then(async response => {
         const data = await response.json();
-        console.log(data)
         if (data.success) {
           this.setState({
             key: this.state.key + 1,
             username: "",
             email: "",
             age: 0});
-          let response = document.getElementById('form-response');
-          response.innerHTML = "User created successfully.<br>";
+          let form_response = document.getElementById('form-response');
+          form_response.innerHTML = "User created successfully.<br><a href=/users/view>View</a><br>";
           this.render();
-        }
-        else {
+        } else {
           // TODO: Display reason for error
           response.innerHTML = "An error occurred while creating the user.";
         }
@@ -92,5 +90,3 @@ class UserManagement extends React.Component {
     );
   }
 }
-
-export default UserManagement;

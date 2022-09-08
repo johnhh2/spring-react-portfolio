@@ -1,0 +1,57 @@
+import React from 'react';
+import './UserManagement.css'
+import config from './config.json';
+
+const serverAddress = config.SERVER_ADDR;
+
+export default class UserView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      jsx: null
+    }
+  }
+
+  componentDidMount() {
+    let rows = [];
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    };
+    fetch(`${serverAddress}/api/get_users`, requestOptions)
+      .then(async response => {
+        const data = await response.json();
+
+        for (let key in data) {
+            let user = data[key]
+            const content = <tr key={key}><td>{user.key}</td>
+                      <td>{user.username}</td>
+                      <td>{user.email}</td><td>{user.age}</td></tr>;
+            rows.push(content);
+        }
+      })
+      .then(() => {
+        this.setState({jsx: (
+          <div className="UserManagement">
+            <header className="UserManagement-header">
+              <table border="1">
+                <thead>
+                  <tr><th>Key</th><th>Username</th><th>Email</th><th>Age</th></tr>
+                </thead>
+                <tbody>
+                  {rows}
+                </tbody>
+                </table>
+            </header>
+          </div>
+        )});
+        this.render();
+      });
+  }
+
+  render() {
+    return this.state.jsx;
+  }
+}

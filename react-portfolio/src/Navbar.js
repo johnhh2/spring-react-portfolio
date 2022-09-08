@@ -76,7 +76,7 @@ export default class Navbar extends React.Component {
       },
       {
         name: "User Management",
-        href: "/users",
+        href: "/users/create",
         googleIcon: "person",
       },
     ]);
