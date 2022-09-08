@@ -28,4 +28,4 @@ Additionally, download and extract [Maven 3.8.6](https://maven.apache.org/downlo
 - Launch the back-end: `./spring-portfolio/mvnw spring-boot:run`
 - Launch the front-end: `yarn --cwd react-portfolio/ start`
 - Access the website (front-end) at `http://localhost:3000`
-- Access the backend at `http://localhost:8080`
+- Access the back-end API at `http://localhost:8080/api`
