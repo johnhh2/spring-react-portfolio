@@ -1,6 +1,9 @@
 # Spring React Portfolio
 A custom portfolio website used to display projects and related information
 
+## Authors
+Created by Matthew Purnell and John-Hugh Hedrick
+
 ## Major Dependencies
  - Spring 2.7.3
  - React.js 18.2
