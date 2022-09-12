@@ -60,12 +60,12 @@ export default class UserCreate extends React.Component {
             age: 0});
           let form_response = document.getElementById('form-response');
           form_response.innerHTML = `User created successfully.<br>
-            <a href="view/${user.id}">View ${user.username}</a><br>
-            <a href="view">View All Users</a><br>`;
+            <a href="view/${user.id}">View ${user.username}</a><br>`;
           this.render();
         } else {
           // TODO: Display reason for error
-          response.innerHTML = "An error occurred while creating the user.";
+          let form_response = document.getElementById('form-response');
+          form_response.innerHTML = "An error occurred while creating the user";
         }
       })
       .catch(error => {

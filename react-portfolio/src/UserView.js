@@ -25,8 +25,10 @@ export default class UserView extends React.Component {
         const data = await response.json();
 
         for (let key in data) {
-            let user = data[key]
-            const content = <tr key={key}><td>{user.id}</td>
+            const user = data[key];
+            const href = `view/${user.id}`;
+            const content = <tr key={key}>
+                      <td><a href={href}>{user.id}</a></td>
                       <td>{user.username}</td>
                       <td>{user.email}</td><td>{user.age}</td></tr>;
             rows.push(content);
@@ -36,6 +38,7 @@ export default class UserView extends React.Component {
         this.setState({jsx: (
           <div className="UserManagement">
             <header className="UserManagement-header">
+              <h1>User Data</h1>
               <table border="1">
                 <thead>
                   <tr><th>ID</th><th>Username</th><th>Email</th><th>Age</th></tr>
