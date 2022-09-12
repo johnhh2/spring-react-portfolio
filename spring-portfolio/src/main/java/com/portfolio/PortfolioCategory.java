@@ -20,7 +20,6 @@ public class PortfolioCategory {
     private String googleIcon;
 
     public PortfolioCategory(String name, String googleIcon) {
-        super();
         this.name = name;
         this.slug = this.slugify(name);
         this.googleIcon = googleIcon;
@@ -28,9 +27,9 @@ public class PortfolioCategory {
 
     public JSONObject toJson() {
         JSONObject jsonObject = new JSONObject();
-	jsonObject.put("name", this.name);
-	jsonObject.put("slug", this.slug);
-	jsonObject.put("googleIcon", this.googleIcon);
+        jsonObject.put("name", this.name);
+        jsonObject.put("slug", this.slug);
+        jsonObject.put("googleIcon", this.googleIcon);
         return jsonObject;
     }
 
