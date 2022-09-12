@@ -22,8 +22,7 @@ public class User {
         this.age = 0;
     }
 
-    public User(int id, String username, String email, int age) {
-        this.id = id;
+    public User(String username, String email, int age) {
         this.username = username;
         this.email = email;
         this.age = age;

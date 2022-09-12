@@ -8,7 +8,6 @@ export default class UserCreate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        id: 0,
         username: "",
         email: "",
         age: 0
@@ -43,7 +42,6 @@ export default class UserCreate extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        id: this.state.id,
         username: this.state.username,
         email: this.state.email,
         age: this.state.age})
@@ -52,12 +50,12 @@ export default class UserCreate extends React.Component {
       .then(async response => {
         const data = await response.json();
         if (data.success) {
-          let user = data.user;
           this.setState({
-            id: this.state.id + 1,
             username: "",
             email: "",
             age: 0});
+
+          const user = data.user;
           let form_response = document.getElementById('form-response');
           form_response.innerHTML = `User created successfully.<br>
             <a href="view/${user.id}">View ${user.username}</a><br>`;

@@ -48,12 +48,11 @@ public class ApiController {
 
     @PostMapping("create_user")
     public String create_user(@RequestBody Map<String, String> request_body) {
-        int id = Integer.parseInt(request_body.get("id"));
         String username = request_body.get("username");
         String email = request_body.get("email");
         int age = Integer.parseInt(request_body.get("age"));
         // TODO: Add validation for fields
-        User user = new User(id, username, email, age);
+        User user = new User(username, email, age);
         user_repository.save(user);
         // TODO: Return success: false on error
         return "{ \"success\": true, \"user\": " + user.toString() + "}";
