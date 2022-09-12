@@ -6,7 +6,6 @@ import './index.css';
 import Portfolio from './Portfolio';
 import Navbar from './Navbar';
 import Info from './Info';
-import Test from './Test';
 import UserCreate from './UserCreate';
 import UserView from './UserView';
 import UserSingleView from './UserSingleView';
@@ -22,7 +21,6 @@ root.render(
         <Routes>
           <Route path="/" element={<Portfolio/>}/>
           <Route path="/info" element={<Info/>}/>
-          <Route path="/test" element={<Test/>}/>
           <Route path="/users/create" element={<UserCreate/>}/>
           <Route path="/users/view" element={<UserView/>}/>
           <Route path="/users/view/:id" element={<UserSingleView/>}/>

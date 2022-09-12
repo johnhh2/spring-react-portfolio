@@ -66,11 +66,6 @@ export default class Navbar extends React.Component {
       },
     ].concat(insertPages).concat([
       {
-        name: "Test",
-        href: "/test",
-        googleIcon: "bug_report",
-      },
-      {
         name: "About",
         href: "/info",
         googleIcon: "info",

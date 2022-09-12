@@ -22,20 +22,6 @@ public class ApiController {
     @Autowired
     private UserRepository user_repository;
 
-    public JSONResponse response = new JSONResponse(0);
-
-    @GetMapping("/")
-    public String json() {
-        return this.response.toString();
-    }
-
-    @PostMapping("edit")
-    public String edit(@RequestBody Map<String, Integer> request_body) {
-        int num = request_body.get("increment");
-        this.response.increment_by(num);
-        return this.response.toString();
-    }
-
     @GetMapping("get_user")
     public String get_user(@RequestParam int id) {
         // TODO: Validate the id
