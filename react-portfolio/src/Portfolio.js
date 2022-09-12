@@ -60,7 +60,7 @@ export default class Portfolio extends React.Component {
       return (
         <div className="Portfolio">
           <header className="Portfolio-header">
-            <p className="Loading"></p>
+            <p>Loading</p>
           </header>
         </div>
       );
