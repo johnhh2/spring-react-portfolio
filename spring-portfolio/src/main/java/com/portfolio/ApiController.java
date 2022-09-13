@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,6 +58,7 @@ public class ApiController {
     }
 
     @PostMapping("create_user")
+    @Transactional
     public String create_user(@RequestBody Map<String, String> request_body) {
         String username = request_body.get("username");
         String email = request_body.get("email");
@@ -66,27 +68,6 @@ public class ApiController {
         user_repository.save(user);
         // TODO: Return success: false on error
         return "{ \"success\": true, \"user\": " + user.toString() + "}";
-    }
-
-    @PostMapping("portfolio/create")
-    public String create_dummy_portfolio(@RequestBody Map<String, String> request_body) {
-        String realname = request_body.get("realname");
-
-        Portfolio portfolio = new Portfolio(realname);
-        portfolio_repository.save(portfolio);
-
-        PortfolioCategory category = new PortfolioCategory(
-            "Mobile Applications", "phone_iphone");
-        portfolio.addCategory(category);
-        portfolio_category_repository.save(category);
-
-        portfolio_repository.save(portfolio);
-
-        User user = user_repository.findById(1).get();
-
-        Hostname hostname = new Hostname(realname, user, portfolio);
-        hostname_repository.save(hostname);
-        return "{\"success\": true, \"portfolio\": " + portfolio.toString() + "}";
     }
 
     @GetMapping("portfolio/get")
@@ -116,6 +97,28 @@ public class ApiController {
             object.put(hostname.getName(), hostname.getPortfolio().toString());
         }
         return object.toString();
+    }
+
+    @PostMapping("portfolio/create")
+    @Transactional
+    public String create_dummy_portfolio(@RequestBody Map<String, String> request_body) {
+        String realname = request_body.get("realname");
+
+        Portfolio portfolio = new Portfolio(realname);
+        portfolio_repository.save(portfolio);
+
+        PortfolioCategory category = new PortfolioCategory(
+            "Mobile Applications", "phone_iphone");
+        portfolio.addCategory(category);
+        portfolio_category_repository.save(category);
+
+        portfolio_repository.save(portfolio);
+
+        User user = user_repository.findById(1).get();
+
+        Hostname hostname = new Hostname(realname, user, portfolio);
+        hostname_repository.save(hostname);
+        return "{\"success\": true, \"portfolio\": " + portfolio.toString() + "}";
     }
 
 }
