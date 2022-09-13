@@ -46,7 +46,7 @@ export default class UserCreate extends React.Component {
         email: this.state.email,
         age: this.state.age})
     };
-    fetch(`${serverAddress}/api/create_user`, requestOptions)
+    fetch(`${serverAddress}/api/user/create`, requestOptions)
       .then(async response => {
         const data = await response.json();
         if (data.success) {

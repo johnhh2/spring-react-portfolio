@@ -3,6 +3,7 @@ package com.portfolio;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +22,7 @@ public class Account {
     private int id;
 
     // Account Settings
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private User user;
     private String realname;
     private boolean darkMode;
@@ -35,9 +36,10 @@ public class Account {
 
     protected Account() {}
 
-    public Account(User user, String realname) {
+    public Account(User user) {
         this.user = user;
-        this.realname = realname;
+        this.user.setAccount(this);
+        this.realname = this.user.getUsername();
         this.darkMode = false;
         this.categories = new ArrayList<PortfolioCategory>();
     }
@@ -45,6 +47,7 @@ public class Account {
     public User getUser() { return this.user; }
     public String getRealname() { return this.realname; }
     public boolean getDarkMode() { return this.darkMode; }
+    public List<PortfolioCategory> getCategories() { return this.categories; }
 
     public void setDarkMode(boolean val) { this.darkMode = val; }
 

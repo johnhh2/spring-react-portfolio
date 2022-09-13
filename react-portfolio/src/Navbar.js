@@ -25,7 +25,7 @@ export default class Navbar extends React.Component {
         'Content-Type': 'application/json',
       },
     };
-    fetch(`${serverAddress}/api/portfolio/get?id=John+Doe`, requestOptions)
+    fetch(`${serverAddress}/api/portfolio/get`, requestOptions)
       .then(async response => {
         const data = await response.json();
         this.setState({

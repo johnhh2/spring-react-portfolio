@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
-@RequestMapping(value="/api", produces=MediaType.APPLICATION_JSON_VALUE)
-public class ApiController {
+@RequestMapping(value="/api/user", produces=MediaType.APPLICATION_JSON_VALUE)
+public class UserController {
 
     @Autowired
     private UserRepository userRepository;
@@ -33,7 +33,7 @@ public class ApiController {
     @Autowired
     private PortfolioCategoryRepository portfolioCategoryRepository;
 
-    @GetMapping("get_user")
+    @GetMapping("get")
     public String getUser(@RequestParam int id) {
         // TODO: Validate the id
         Optional<User> user = userRepository.findById(id);
@@ -43,7 +43,7 @@ public class ApiController {
         return null;
     }
 
-    @GetMapping("get_users")
+    @GetMapping("get/all")
     public String getUsers() {
         Iterable<User> allUsers =  userRepository.findAll();
         String out = "{";
@@ -57,7 +57,7 @@ public class ApiController {
         return out;
     }
 
-    @PostMapping("create_user")
+    @PostMapping("create")
     @Transactional
     public String createUser(@RequestBody Map<String, String> requestBody) {
         String username = requestBody.get("username");
@@ -66,47 +66,18 @@ public class ApiController {
         // TODO: Add validation for fields
         User user = new User(username, email, age);
         userRepository.save(user);
-        // TODO: Return success: false on error
-        return "{ \"success\": true, \"user\": " + user.toString() + "}";
-    }
 
-    @GetMapping("portfolio/get")
-    public String getAccount(@RequestParam String id) {
-        // TODO: Validate the id
-        Optional<Hostname> hostname = hostnameRepository.findById(id);
-        if (hostname.isPresent()) {
-            return hostname.get().getAccount().toString();
-        }
-        return null;
-    }
-
-    @GetMapping("portfolio/get/all")
-    public String getAllHostnames() {
-        Iterable<Hostname> allHostnames =  hostnameRepository.findAll();
-        JSONObject object = new JSONObject();
-        for (Hostname hostname : allHostnames) {
-            object.put(hostname.getName(), hostname.getAccount().toString());
-        }
-        return object.toString();
-    }
-
-    @PostMapping("portfolio/create")
-    @Transactional
-    public String createDummyAccount(@RequestBody Map<String, String> requestBody) {
-        String realname = requestBody.get("realname");
-
-        User user = userRepository.findById(1).get();
-
-        Account account = new Account(user, realname);
+        Account account = new Account(user);
+        accountRepository.save(account);
 
         PortfolioCategory category = new PortfolioCategory(
             "Mobile Applications", "phone_iphone");
         account.addCategory(category);
         portfolioCategoryRepository.save(category);
 
-        Hostname hostname = new Hostname(realname, user, account);
+        Hostname hostname = new Hostname("localhost", user, account);
         hostnameRepository.save(hostname);
-        return "{\"success\": true, \"account\": " + account.toString() + "}";
+        // TODO: Return success: false on error
+        return "{ \"success\": true, \"user\": " + user.toString() + "}";
     }
-
 }

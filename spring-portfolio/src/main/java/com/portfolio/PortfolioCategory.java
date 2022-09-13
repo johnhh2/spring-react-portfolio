@@ -46,6 +46,14 @@ public class PortfolioCategory {
        return out;
     }
 
+    public JSONObject toJson() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("name", this.name);
+        jsonObject.put("slug", this.slug);
+        jsonObject.put("googleIcon", this.googleIcon);
+        return jsonObject;
+    }
+
     public String slugify(String input) {
         final String intermediateResult = Normalizer
             .normalize(input, Normalizer.Form.NFD)

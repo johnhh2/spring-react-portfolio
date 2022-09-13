@@ -20,7 +20,7 @@ export default class UserView extends React.Component {
         'Content-Type': 'application/json',
       }
     };
-    fetch(`${serverAddress}/api/get_users`, requestOptions)
+    fetch(`${serverAddress}/api/user/get/all`, requestOptions)
       .then(async response => {
         const data = await response.json();
 
