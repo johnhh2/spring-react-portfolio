@@ -10,7 +10,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String username;
     private String email;
     private int age;
@@ -28,7 +28,7 @@ public class User {
         this.age = age;
     }
 
-    public int getId() { return this.id; }
+    public long getId() { return this.id; }
 
     public String toString() {
         return String.format(

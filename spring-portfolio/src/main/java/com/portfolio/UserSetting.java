@@ -1,6 +1,7 @@
 package com.portfolio;
 
 import java.util.Map;
+import java.util.HashMap;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,26 +11,22 @@ import javax.persistence.Id;
 @Entity
 public class UserSetting {
     @Id
-    private int userId;
-    private boolean privateMode;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private boolean darkMode;
+    private Map<PortfolioCategory, Boolean> categories;
 
-    public UserSetting(int userId) {
-        this.userId = userId;
-        this.privateMode = true;
+    @OneToOne
+    private User user;
+
+    public UserSetting(User user) {
+        this.user = user;
         this.darkMode = false;
+	this.categories = new HashMap<PortfolioCategory, Boolean>();
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public boolean getPrivateMode() {
-        return this.privateMode;
-    }
-
-    public void setPrivateMode(boolean val) {
-        this.privateMode = val;
+    public User getUser() {
+        return this.user;
     }
 
     public boolean getDarkMode() {

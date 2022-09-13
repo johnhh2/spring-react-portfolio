@@ -4,16 +4,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Hostname {
     @Id
     private String name;
-    /*private User user;*/
+
+    @OneToOne
+    private User user;
 
     public Hostname(String name, User user) {
-        super();
         this.name = name;
-        /*this.user = user;*/
+        this.user = user;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public User getUser() {
+        return this.user;
     }
 }
