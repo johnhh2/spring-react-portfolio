@@ -26,7 +26,7 @@ public class PortfolioCategory {
     private String name;
     private String slug;
     private String googleIcon;
-    private boolean show;
+    private boolean display;
 
     protected PortfolioCategory() {}
 
@@ -34,7 +34,7 @@ public class PortfolioCategory {
         this.name = name;
         this.slug = this.slugify(name);
         this.googleIcon = googleIcon;
-        this.show = true;
+        this.display = true;
     }
 
     public Account getAccount() { return this.account; }
@@ -42,18 +42,18 @@ public class PortfolioCategory {
     public void setAccount(Account account) { this.account = account; }
 
     public JSONObject toJson() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name", this.name);
-        jsonObject.put("slug", this.slug);
-        jsonObject.put("googleIcon", this.googleIcon);
-        jsonObject.put("show", this.show);
-        return jsonObject;
+        JSONObject object = new JSONObject();
+        object.put("name", this.name);
+        object.put("slug", this.slug);
+        object.put("googleIcon", this.googleIcon);
+        object.put("display", this.display);
+        return object;
     }
 
     public String toString() {
         return String.format(
-            "PortfolioCategory(id: %s, name: %s, slug: %s, googleIcon: %s, show: %s)",
-            this.id, this.name, this.slug, this.googleIcon, this.show);
+            "PortfolioCategory(id: %s, name: %s, slug: %s, googleIcon: %s, display: %s)",
+            this.id, this.name, this.slug, this.googleIcon, this.display);
     }
 
     public String slugify(String input) {
