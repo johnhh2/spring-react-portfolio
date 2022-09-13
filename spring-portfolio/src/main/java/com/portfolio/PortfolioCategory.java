@@ -20,8 +20,8 @@ public class PortfolioCategory {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="portfolio_realname")
-    private Portfolio portfolio;
+    @JoinColumn(name="account_id")
+    private Account account;
 
     private String name;
     private String slug;
@@ -35,19 +35,9 @@ public class PortfolioCategory {
         this.googleIcon = googleIcon;
     }
 
-    public Portfolio getPortfolio() { return this.portfolio; }
+    public Account getAccount() { return this.account; }
 
-    public void setPortfolio(Portfolio portfolio) {
-        this.portfolio = portfolio;
-    }
-
-    public JSONObject toJson() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name", this.name);
-        jsonObject.put("slug", this.slug);
-        jsonObject.put("googleIcon", this.googleIcon);
-        return jsonObject;
-    }
+    public void setAccount(Account account) { this.account = account; }
 
     public String toString() {
        String out = "{\"name\": \"" + this.name + "\", ";

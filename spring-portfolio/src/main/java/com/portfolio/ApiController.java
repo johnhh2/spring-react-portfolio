@@ -22,21 +22,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class ApiController {
 
     @Autowired
-    private UserRepository user_repository;
+    private UserRepository userRepository;
 
     @Autowired
-    private HostnameRepository hostname_repository;
+    private HostnameRepository hostnameRepository;
 
     @Autowired
-    private PortfolioRepository portfolio_repository;
+    private AccountRepository accountRepository;
 
     @Autowired
-    private PortfolioCategoryRepository portfolio_category_repository;
+    private PortfolioCategoryRepository portfolioCategoryRepository;
 
     @GetMapping("get_user")
-    public String get_user(@RequestParam int id) {
+    public String getUser(@RequestParam int id) {
         // TODO: Validate the id
-        Optional<User> user = user_repository.findById(id);
+        Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
             return user.get().toString();
         }
@@ -44,10 +44,10 @@ public class ApiController {
     }
 
     @GetMapping("get_users")
-    public String get_users() {
-        Iterable<User> all_users =  user_repository.findAll();
+    public String getUsers() {
+        Iterable<User> allUsers =  userRepository.findAll();
         String out = "{";
-        for (User user : all_users) {
+        for (User user : allUsers) {
             out += "\"" + user.getId() + "\": " + user.toString() + ", ";
         }
         if (out.length() > 2) {
@@ -59,63 +59,54 @@ public class ApiController {
 
     @PostMapping("create_user")
     @Transactional
-    public String create_user(@RequestBody Map<String, String> request_body) {
-        String username = request_body.get("username");
-        String email = request_body.get("email");
-        int age = Integer.parseInt(request_body.get("age"));
+    public String createUser(@RequestBody Map<String, String> requestBody) {
+        String username = requestBody.get("username");
+        String email = requestBody.get("email");
+        int age = Integer.parseInt(requestBody.get("age"));
         // TODO: Add validation for fields
         User user = new User(username, email, age);
-        user_repository.save(user);
+        userRepository.save(user);
         // TODO: Return success: false on error
         return "{ \"success\": true, \"user\": " + user.toString() + "}";
     }
 
     @GetMapping("portfolio/get")
-    public String get_portfolio(@RequestParam String id) {
+    public String getAccount(@RequestParam String id) {
         // TODO: Validate the id
-        Optional<Hostname> result = hostname_repository.findById(id);
-        if (result.isPresent()) {
-            Hostname hostname = result.get();
-            Portfolio portfolio = hostname.getPortfolio();
-            String realname = portfolio.getRealname();
-            Iterable<PortfolioCategory> categories = portfolio_category_repository.findAll();
-            for (PortfolioCategory category : categories) {
-                if (category.getPortfolio().getRealname().equals(realname)) {
-                    portfolio.addCategory(category);
-                }
-            }
-            return portfolio.toString();
+        Optional<Hostname> hostname = hostnameRepository.findById(id);
+        if (hostname.isPresent()) {
+            return hostname.get().getAccount().toString();
         }
         return null;
     }
 
     @GetMapping("portfolio/get/all")
-    public String get_all_hostnames() {
-        Iterable<Hostname> all_hostnames =  hostname_repository.findAll();
+    public String getAllHostnames() {
+        Iterable<Hostname> allHostnames =  hostnameRepository.findAll();
         JSONObject object = new JSONObject();
-        for (Hostname hostname : all_hostnames) {
-            object.put(hostname.getName(), hostname.getPortfolio().toString());
+        for (Hostname hostname : allHostnames) {
+            object.put(hostname.getName(), hostname.getAccount().toString());
         }
         return object.toString();
     }
 
     @PostMapping("portfolio/create")
     @Transactional
-    public String create_dummy_portfolio(@RequestBody Map<String, String> request_body) {
-        String realname = request_body.get("realname");
+    public String createDummyAccount(@RequestBody Map<String, String> requestBody) {
+        String realname = requestBody.get("realname");
 
-        Portfolio portfolio = new Portfolio(realname);
+        User user = userRepository.findById(1).get();
+
+        Account account = new Account(user, realname);
 
         PortfolioCategory category = new PortfolioCategory(
             "Mobile Applications", "phone_iphone");
-        portfolio.addCategory(category);
-        portfolio_category_repository.save(category);
+        account.addCategory(category);
+        portfolioCategoryRepository.save(category);
 
-        User user = user_repository.findById(1).get();
-
-        Hostname hostname = new Hostname(realname, user, portfolio);
-        hostname_repository.save(hostname);
-        return "{\"success\": true, \"portfolio\": " + portfolio.toString() + "}";
+        Hostname hostname = new Hostname(realname, user, account);
+        hostnameRepository.save(hostname);
+        return "{\"success\": true, \"account\": " + account.toString() + "}";
     }
 
 }

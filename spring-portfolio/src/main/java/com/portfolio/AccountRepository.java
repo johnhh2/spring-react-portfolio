@@ -2,11 +2,11 @@ package com.portfolio;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.portfolio.Portfolio;
+import com.portfolio.Account;
 
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
 // CRUD refers Create, Read, Update, Delete
 
-public interface PortfolioRepository extends CrudRepository<Portfolio, String> {
+public interface AccountRepository extends CrudRepository<Account, Integer> {
 
 }
