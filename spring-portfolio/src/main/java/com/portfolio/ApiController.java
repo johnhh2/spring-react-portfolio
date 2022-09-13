@@ -105,14 +105,11 @@ public class ApiController {
         String realname = request_body.get("realname");
 
         Portfolio portfolio = new Portfolio(realname);
-        portfolio_repository.save(portfolio);
 
         PortfolioCategory category = new PortfolioCategory(
             "Mobile Applications", "phone_iphone");
         portfolio.addCategory(category);
         portfolio_category_repository.save(category);
-
-        portfolio_repository.save(portfolio);
 
         User user = user_repository.findById(1).get();
 
