@@ -39,19 +39,18 @@ public class PortfolioCategory {
 
     public void setAccount(Account account) { this.account = account; }
 
-    public String toString() {
-       String out = "{\"name\": \"" + this.name + "\", ";
-       out += "\"slug\": \"" + this.slug + "\", ";
-       out += "\"googleIcon\": \"" + this.googleIcon + "\"}";
-       return out;
-    }
-
     public JSONObject toJson() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("name", this.name);
         jsonObject.put("slug", this.slug);
         jsonObject.put("googleIcon", this.googleIcon);
         return jsonObject;
+    }
+
+    public String toString() {
+        return String.format(
+            "PortfolioCategory(id: %s, name: %s, slug: %s, googleIcon: %s)",
+            this.id, this.name, this.slug, this.googleIcon);
     }
 
     public String slugify(String input) {

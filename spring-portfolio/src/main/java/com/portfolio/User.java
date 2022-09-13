@@ -1,5 +1,6 @@
 package com.portfolio;
 
+import org.json.JSONObject;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,15 +30,24 @@ public class User {
         this.age = age;
     }
 
-    public long getId() { return this.id; }
+    public int getId() { return this.id; }
     public Account getAccount() { return this.account; }
     public String getUsername() { return this.username; }
 
     public void setAccount(Account account) { this.account = account; }
 
+    public JSONObject toJson() {
+        JSONObject object = new JSONObject();
+        object.put("id", this.id);
+        object.put("username", this.username);
+        object.put("email", this.email);
+        object.put("age", this.age);
+        return object;
+    }
+
     public String toString() {
         return String.format(
-            "{\"id\": %s, \"username\": \"%s\", \"email\": \"%s\", \"age\": %s}",
+            "User(id: %s, username: %s, email: %s, age: %s)",
             this.id, this.username, this.email, this.age);
     }
 }

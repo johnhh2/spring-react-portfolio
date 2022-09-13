@@ -56,21 +56,31 @@ public class Account {
         this.categories.add(category);
     }
 
-    public String toString() {
-        String out = "{\"id\": " + this.id + ", ";
-        out += "\"user\": " + this.user.toString() + ", ";
-        out += "\"realname\": \"" + this.realname + "\", ";
-        out += "\"darkMode\": " + this.darkMode + ", ";
-        out += "\"categories\": [";
-        for (PortfolioCategory category : this.categories) {
-            out += category.toString() + ", ";
-        }
-        if (out.substring(out.length() - 2).equals(", ")) {
-            out = out.substring(0, out.length() - 2); // Remove trailing ", "
-        }
-        out += "]}";
-//        object.put("projects", this.projects);
+    public JSONObject toJson() {
+        JSONObject object = new JSONObject();
+        object.put("id", this.id);
+        object.put("user", this.user.toJson());
+        object.put("realname", this.realname);
+        object.put("darkMode", this.darkMode);
+        JSONArray categories = new JSONArray();
+        for (PortfolioCategory category : this.categories)
+            categories.put(category);
+        object.put("categories", categories);
+        return object;
+    }
 
+    private String categoriesToString() {
+        String out = "";
+        for (PortfolioCategory category : this.categories)
+            out += category.toString() + ", ";
+        if (out.length() > 0)
+            out = out.substring(0, out.length() - 2);
         return out;
+    }
+
+    public String toString() {
+        return String.format(
+            "Account(id: %s, user: %s, realname: %s, darkMode: %s, categories: [%s])",
+            this.id, this.user.toString(), this.realname, this.darkMode, this.categoriesToString());
     }
 }

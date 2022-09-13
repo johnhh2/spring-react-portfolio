@@ -38,7 +38,7 @@ public class UserController {
         // TODO: Validate the id
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
-            return user.get().toString();
+            return user.get().toJson().toString();
         }
         return null;
     }
@@ -46,15 +46,10 @@ public class UserController {
     @GetMapping("get/all")
     public String getUsers() {
         Iterable<User> allUsers =  userRepository.findAll();
-        String out = "{";
-        for (User user : allUsers) {
-            out += "\"" + user.getId() + "\": " + user.toString() + ", ";
-        }
-        if (out.length() > 2) {
-            out = out.substring(0, out.length() - 2); // Remove trailing ", "
-        }
-        out += "}";
-        return out;
+        JSONObject object = new JSONObject();
+        for (User user : allUsers)
+            object.put(String.valueOf(user.getId()), user.toJson());
+        return object.toString();
     }
 
     @PostMapping("create")
@@ -78,6 +73,9 @@ public class UserController {
         Hostname hostname = new Hostname("localhost", user, account);
         hostnameRepository.save(hostname);
         // TODO: Return success: false on error
-        return "{ \"success\": true, \"user\": " + user.toString() + "}";
+        JSONObject object = new JSONObject();
+        object.put("success", true);
+        object.put("user", user.toJson());
+        return object.toString();
     }
 }

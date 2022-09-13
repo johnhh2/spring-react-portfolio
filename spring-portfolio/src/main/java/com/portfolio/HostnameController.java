@@ -30,9 +30,8 @@ public class HostnameController {
     public String getAllHostnames() {
         Iterable<Hostname> allHostnames =  hostnameRepository.findAll();
         JSONObject object = new JSONObject();
-        for (Hostname hostname : allHostnames) {
-            object.put(hostname.getName(), hostname.getAccount().toString());
-        }
+        for (Hostname hostname : allHostnames)
+            object.put(hostname.getName(), hostname.getAccount().toJson());
         return object.toString();
     }
 

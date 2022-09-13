@@ -38,4 +38,9 @@ public class Hostname {
 
     public void setName(String name) { this.name = name; }
 
+    public String toString() {
+        return String.format(
+            "Hostname(id: %S, name: %s, user: %s, account: %s)",
+            this.id, this.name, this.user.toString(), this.account.toString());
+    }
 }
