@@ -37,7 +37,7 @@ public class HostnameController {
         Hostname host = hostnameRepository.findByName(hostname);
         if (host != null) {
             User user = host.getUser();
-	        Account account = user.getAccount();
+            Account account = user.getAccount();
 
             JSONArray categories = new JSONArray();
             for (PortfolioCategory category : account.getCategories())

@@ -25,13 +25,13 @@ public class UserController {
     private UserRepository userRepository;
 
     @Autowired
-    private HostnameRepository hostnameRepository;
-
-    @Autowired
     private AccountRepository accountRepository;
 
     @Autowired
     private PortfolioCategoryRepository portfolioCategoryRepository;
+
+    @Autowired
+    private HostnameRepository hostnameRepository;
 
     @GetMapping("get")
     public String getUser(@RequestParam int id) {
