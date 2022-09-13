@@ -1,5 +1,6 @@
 package com.portfolio;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,8 +16,8 @@ import org.json.JSONObject;
 @RestController
 @RequestMapping(value="/api/portfolio")
 public class HostnameController {
-    /*@Autowired
-    private HostnameRepository repo;*/
+    @Autowired
+    private HostnameRepository hostnameRepository;
 
     @RequestMapping(value="/get", method=RequestMethod.GET,
                     produces=MediaType.APPLICATION_JSON_VALUE)

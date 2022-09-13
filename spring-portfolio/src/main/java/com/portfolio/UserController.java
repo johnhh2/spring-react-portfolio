@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
 @RequestMapping(value="/api", produces=MediaType.APPLICATION_JSON_VALUE)
-public class ApiController {
+public class UserController {
 
     @Autowired
     private UserRepository user_repository;
