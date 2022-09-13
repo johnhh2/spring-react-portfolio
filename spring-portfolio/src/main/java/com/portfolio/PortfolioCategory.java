@@ -20,6 +20,8 @@ public class PortfolioCategory {
     private String slug;
     private String googleIcon;
 
+    public PortfolioCategory() { assert false : "Unreachable"; }
+
     public PortfolioCategory(String name, String googleIcon) {
         this.name = name;
         this.slug = this.slugify(name);

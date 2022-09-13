@@ -15,12 +15,7 @@ public class User {
     private String email;
     private int age;
 
-    public User() {
-        this.id = 0;
-        this.username = "";
-        this.email = "";
-        this.age = 0;
-    }
+    public User() { assert false : "Unreachable"; }
 
     public User(String username, String email, int age) {
         this.username = username;

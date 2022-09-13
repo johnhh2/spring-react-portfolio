@@ -19,6 +19,8 @@ public class UserSetting {
     @OneToOne
     private User user;
 
+    public UserSetting() { assert false : "Unreachable"; }
+
     public UserSetting(User user) {
         this.user = user;
         this.darkMode = false;

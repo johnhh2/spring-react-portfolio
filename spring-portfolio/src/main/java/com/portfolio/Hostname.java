@@ -14,6 +14,8 @@ public class Hostname {
     @OneToOne
     private User user;
 
+    public Hostname() { assert false : "Unreachable"; }
+
     public Hostname(String name, User user) {
         this.name = name;
         this.user = user;
