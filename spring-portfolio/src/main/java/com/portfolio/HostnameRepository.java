@@ -1,5 +1,7 @@
 package com.portfolio;
 
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 
 import com.portfolio.Hostname;
@@ -8,5 +10,7 @@ import com.portfolio.Hostname;
 // CRUD refers Create, Read, Update, Delete
 
 public interface HostnameRepository extends CrudRepository<Hostname, Integer> {
+
+    public Hostname findByName(String name);
 
 }
