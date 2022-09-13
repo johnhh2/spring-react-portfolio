@@ -17,7 +17,7 @@ public class Hostname {
     @OneToOne
     private Portfolio portfolio;
 
-    public Hostname() { assert false : "Unreachable"; }
+    protected Hostname() {}
 
     public Hostname(String name, User user, Portfolio portfolio) {
         this.name = name;

@@ -27,7 +27,7 @@ public class PortfolioCategory {
     private String slug;
     private String googleIcon;
 
-    public PortfolioCategory() { assert false : "Unreachable"; }
+    protected PortfolioCategory() {}
 
     public PortfolioCategory(String name, String googleIcon) {
         this.name = name;

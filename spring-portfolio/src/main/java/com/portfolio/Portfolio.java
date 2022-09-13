@@ -23,7 +23,7 @@ public class Portfolio {
     // TODO: Make a Project class to store projects
 //    private JSONArray projects;
 
-    public Portfolio() { assert false : "Unreachable"; }
+    protected Portfolio() {}
 
     public Portfolio(String realname) {
         this.realname = realname;

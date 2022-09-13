@@ -22,7 +22,7 @@ public class UserSetting {
     @OneToOne
     private User user;
 
-    public UserSetting() { assert false : "Unreachable"; }
+    protected UserSetting() {}
 
     public UserSetting(User user) {
         this.user = user;
