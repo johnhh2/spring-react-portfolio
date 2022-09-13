@@ -36,10 +36,10 @@ public class Account {
 
     protected Account() {}
 
-    public Account(User user) {
+    public Account(User user, String realname) {
         this.user = user;
         this.user.setAccount(this);
-        this.realname = this.user.getUsername();
+        this.realname = realname;
         this.darkMode = false;
         this.categories = new ArrayList<PortfolioCategory>();
     }
@@ -59,7 +59,6 @@ public class Account {
     public JSONObject toJson() {
         JSONObject object = new JSONObject();
         object.put("id", this.id);
-        object.put("user", this.user.toJson());
         object.put("realname", this.realname);
         object.put("darkMode", this.darkMode);
         JSONArray categories = new JSONArray();

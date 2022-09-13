@@ -55,6 +55,7 @@ public class UserController {
     @PostMapping("create")
     @Transactional
     public String createUser(@RequestBody Map<String, String> requestBody) {
+        String realname = requestBody.get("name");
         String username = requestBody.get("username");
         String email = requestBody.get("email");
         int age = Integer.parseInt(requestBody.get("age"));
@@ -62,7 +63,7 @@ public class UserController {
         User user = new User(username, email, age);
         userRepository.save(user);
 
-        Account account = new Account(user);
+        Account account = new Account(user, realname);
         accountRepository.save(account);
 
         PortfolioCategory category = new PortfolioCategory(

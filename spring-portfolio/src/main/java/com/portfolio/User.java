@@ -32,13 +32,13 @@ public class User {
 
     public int getId() { return this.id; }
     public Account getAccount() { return this.account; }
-    public String getUsername() { return this.username; }
 
     public void setAccount(Account account) { this.account = account; }
 
     public JSONObject toJson() {
         JSONObject object = new JSONObject();
         object.put("id", this.id);
+        object.put("account", this.account.toJson());
         object.put("username", this.username);
         object.put("email", this.email);
         object.put("age", this.age);
