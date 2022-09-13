@@ -39,29 +39,6 @@ export default class Portfolio extends React.Component {
       });
   }
 
-  createDummyPortfolio() {
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        'realname': 'John Doe'})
-    };
-    fetch(`${serverAddress}/api/portfolio/create`, requestOptions)
-      .then(async response => {
-        const data = await response.json();
-        if (data.success) {
-          window.location.reload();
-        } else {
-          console.error("An unknown error occurred");
-        }
-      })
-      .catch(error => {
-        console.error("Error: ", error);
-      });
-  }
-
   render() {
     if (this.state.realname != null) {
       return (
@@ -75,7 +52,6 @@ export default class Portfolio extends React.Component {
               <img src={springLogo} className="Spring-logo" alt="logo" />
               Spring
             </div>
-            <button onClick={this.createDummyPortfolio.bind(this)}>Create Portfolio</button>
           </header>
         </div>
       );
@@ -84,7 +60,6 @@ export default class Portfolio extends React.Component {
         <div className="Portfolio">
           <header className="Portfolio-header">
             <p>Loading</p>
-            <button onClick={this.createDummyPortfolio.bind(this)}>Create Portfolio</button>
           </header>
         </div>
       );
