@@ -28,7 +28,7 @@ class UserSingleView extends Component {
       },
     };
     const params_id = this.props.params.id
-    fetch(`${serverAddress}/api/get_user?id=${params_id}`, requestOptions)
+    fetch(`${serverAddress}/api/user/get?id=${params_id}`, requestOptions)
       .then(async response => {
         const data = await response.json();
 

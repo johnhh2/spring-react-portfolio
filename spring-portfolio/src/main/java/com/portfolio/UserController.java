@@ -2,8 +2,10 @@ package com.portfolio;
 
 import java.util.Map;
 import java.util.Optional;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,46 +18,64 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
-@RequestMapping(value="/api", produces=MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value="/api/user", produces=MediaType.APPLICATION_JSON_VALUE)
 public class UserController {
 
     @Autowired
-    private UserRepository user_repository;
+    private UserRepository userRepository;
 
-    @GetMapping("get_user")
-    public String get_user(@RequestParam int id) {
+    @Autowired
+    private AccountRepository accountRepository;
+
+    @Autowired
+    private PortfolioCategoryRepository portfolioCategoryRepository;
+
+    @Autowired
+    private HostnameRepository hostnameRepository;
+
+    @GetMapping("get")
+    public String getUser(@RequestParam int id) {
         // TODO: Validate the id
-        Optional<User> user = user_repository.findById(id);
+        Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
-            return user.get().toString();
+            return user.get().toJson().toString();
         }
         return null;
     }
 
-    @GetMapping("get_users")
-    public String get_users() {
-        Iterable<User> all_users =  user_repository.findAll();
-        String out = "{";
-        for (User user : all_users) {
-            out += "\"" + user.getId() + "\": " + user.toString() + ", ";
-        }
-        if (out.length() > 2) {
-            out = out.substring(0, out.length() - 2); // Remove trailing ", "
-        }
-        out += "}";
-        return out;
+    @GetMapping("get/all")
+    public String getUsers() {
+        Iterable<User> allUsers =  userRepository.findAll();
+        JSONObject object = new JSONObject();
+        for (User user : allUsers)
+            object.put(String.valueOf(user.getId()), user.toJson());
+        return object.toString();
     }
 
-    @PostMapping("create_user")
-    public String create_user(@RequestBody Map<String, String> request_body) {
-        String username = request_body.get("username");
-        String email = request_body.get("email");
-        int age = Integer.parseInt(request_body.get("age"));
+    @PostMapping("create")
+    @Transactional
+    public String createUser(@RequestBody Map<String, String> requestBody) {
+        String username = requestBody.get("username");
+        String email = requestBody.get("email");
+        int age = Integer.parseInt(requestBody.get("age"));
         // TODO: Add validation for fields
         User user = new User(username, email, age);
-        user_repository.save(user);
-        // TODO: Return success: false on error
-        return "{ \"success\": true, \"user\": " + user.toString() + "}";
-    }
+        userRepository.save(user);
 
+        Account account = new Account(user);
+        accountRepository.save(account);
+
+        PortfolioCategory category = new PortfolioCategory(
+            "Mobile Applications", "phone_iphone");
+        account.addCategory(category);
+        portfolioCategoryRepository.save(category);
+
+        Hostname hostname = new Hostname("localhost", user, account);
+        hostnameRepository.save(hostname);
+        // TODO: Return success: false on error
+        JSONObject object = new JSONObject();
+        object.put("success", true);
+        object.put("user", user.toJson());
+        return object.toString();
+    }
 }

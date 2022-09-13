@@ -21,17 +21,26 @@ public class Hostname {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    public Hostname() { assert false : "Unreachable"; }
+    @OneToOne
+    private Account account;
 
-    public Hostname(String name, User user) {
+    protected Hostname() {}
+
+    public Hostname(String name, User user, Account account) {
         this.name = name;
         this.user = user;
+        this.account = account;
     }
 
-    public User getUser() { return this.user; }
-
     public String getName() { return this.name; }
+    public User getUser() { return this.user; }
+    public Account getAccount() { return this.account; }
 
     public void setName(String name) { this.name = name; }
 
+    public String toString() {
+        return String.format(
+            "Hostname(id: %S, name: %s, user: %s, account: %s)",
+            this.id, this.name, this.user.toString(), this.account.toString());
+    }
 }

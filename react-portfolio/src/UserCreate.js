@@ -46,7 +46,7 @@ export default class UserCreate extends React.Component {
         email: this.state.email,
         age: this.state.age})
     };
-    fetch(`${serverAddress}/api/create_user`, requestOptions)
+    fetch(`${serverAddress}/api/user/create`, requestOptions)
       .then(async response => {
         const data = await response.json();
         if (data.success) {
@@ -63,7 +63,7 @@ export default class UserCreate extends React.Component {
         } else {
           // TODO: Display reason for error
           let form_response = document.getElementById('form-response');
-          form_response.innerHTML = "An error occurred while creating the user";
+          form_response.innerHTML = "An error occurred while creating the user.<br>";
         }
       })
       .catch(error => {

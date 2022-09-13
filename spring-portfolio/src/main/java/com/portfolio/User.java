@@ -1,9 +1,11 @@
 package com.portfolio;
 
+import org.json.JSONObject;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -11,11 +13,16 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @OneToOne
+    private Account account;
+
     private String username;
     private String email;
     private int age;
 
-    public User() { assert false : "Unreachable"; }
+
+    protected User() {}
 
     public User(String username, String email, int age) {
         this.username = username;
@@ -23,11 +30,24 @@ public class User {
         this.age = age;
     }
 
-    public long getId() { return this.id; }
+    public int getId() { return this.id; }
+    public Account getAccount() { return this.account; }
+    public String getUsername() { return this.username; }
+
+    public void setAccount(Account account) { this.account = account; }
+
+    public JSONObject toJson() {
+        JSONObject object = new JSONObject();
+        object.put("id", this.id);
+        object.put("username", this.username);
+        object.put("email", this.email);
+        object.put("age", this.age);
+        return object;
+    }
 
     public String toString() {
         return String.format(
-            "{\"id\": %s, \"username\": \"%s\", \"email\": \"%s\", \"age\": %s}",
+            "User(id: %s, username: %s, email: %s, age: %s)",
             this.id, this.username, this.email, this.age);
     }
 }

@@ -2,7 +2,6 @@ import logo from './images/logo.svg';
 import springLogo from './images/spring-logo.svg';
 import './Portfolio.css';
 import React from 'react';
-/*import {BrowserRouter, Route, Routes} from "react-router-dom";*/
 
 import config from './config.json';
 

@@ -1,9 +1,12 @@
 package com.portfolio;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import java.text.Normalizer;
 
@@ -16,24 +19,41 @@ public class PortfolioCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="account_id")
+    private Account account;
+
     private String name;
     private String slug;
     private String googleIcon;
+    private boolean display;
 
-    public PortfolioCategory() { assert false : "Unreachable"; }
+    protected PortfolioCategory() {}
 
     public PortfolioCategory(String name, String googleIcon) {
         this.name = name;
         this.slug = this.slugify(name);
         this.googleIcon = googleIcon;
+        this.display = true;
     }
 
+    public Account getAccount() { return this.account; }
+
+    public void setAccount(Account account) { this.account = account; }
+
     public JSONObject toJson() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name", this.name);
-        jsonObject.put("slug", this.slug);
-        jsonObject.put("googleIcon", this.googleIcon);
-        return jsonObject;
+        JSONObject object = new JSONObject();
+        object.put("name", this.name);
+        object.put("slug", this.slug);
+        object.put("googleIcon", this.googleIcon);
+        object.put("display", this.display);
+        return object;
+    }
+
+    public String toString() {
+        return String.format(
+            "PortfolioCategory(id: %s, name: %s, slug: %s, googleIcon: %s, display: %s)",
+            this.id, this.name, this.slug, this.googleIcon, this.display);
     }
 
     public String slugify(String input) {
