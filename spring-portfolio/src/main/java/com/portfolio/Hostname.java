@@ -21,15 +21,9 @@ public class Hostname {
         this.user = user;
     }
 
-    public String getName() {
-        return this.name;
-    }
+    public String getName() { return this.name; }
+    public User getUser() { return this.user; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
-    public User getUser() {
-        return this.user;
-    }
 }
