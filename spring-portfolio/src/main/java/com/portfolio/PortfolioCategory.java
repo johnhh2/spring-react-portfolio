@@ -15,7 +15,7 @@ public class PortfolioCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
     private String name;
     private String slug;
     private String googleIcon;
