@@ -14,15 +14,20 @@ public class Hostname {
     @OneToOne
     private User user;
 
+    @OneToOne
+    private Portfolio portfolio;
+
     public Hostname() { assert false : "Unreachable"; }
 
-    public Hostname(String name, User user) {
+    public Hostname(String name, User user, Portfolio portfolio) {
         this.name = name;
         this.user = user;
+        this.portfolio = portfolio;
     }
 
     public String getName() { return this.name; }
     public User getUser() { return this.user; }
+    public Portfolio getPortfolio() { return this.portfolio; }
 
     public void setName(String name) { this.name = name; }
 

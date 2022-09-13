@@ -63,7 +63,7 @@ export default class UserCreate extends React.Component {
         } else {
           // TODO: Display reason for error
           let form_response = document.getElementById('form-response');
-          form_response.innerHTML = "An error occurred while creating the user";
+          form_response.innerHTML = "An error occurred while creating the user.<br>";
         }
       })
       .catch(error => {

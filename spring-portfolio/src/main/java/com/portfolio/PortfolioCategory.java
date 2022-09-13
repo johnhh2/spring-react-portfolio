@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import java.text.Normalizer;
 
@@ -16,6 +18,10 @@ public class PortfolioCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @ManyToOne
+    @JoinColumn(name="portfolio_realname")
+    private Portfolio portfolio;
+
     private String name;
     private String slug;
     private String googleIcon;
@@ -28,12 +34,25 @@ public class PortfolioCategory {
         this.googleIcon = googleIcon;
     }
 
+    public Portfolio getPortfolio() { return this.portfolio; }
+
+    public void setPortfolio(Portfolio portfolio) {
+        this.portfolio = portfolio;
+    }
+
     public JSONObject toJson() {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("name", this.name);
         jsonObject.put("slug", this.slug);
         jsonObject.put("googleIcon", this.googleIcon);
         return jsonObject;
+    }
+
+    public String toString() {
+       String out = "{\"name\": \"" + this.name + "\", ";
+       out += "\"slug\": \"" + this.slug + "\", ";
+       out += "\"googleIcon\": \"" + this.googleIcon + "\"}";
+       return out;
     }
 
     public String slugify(String input) {

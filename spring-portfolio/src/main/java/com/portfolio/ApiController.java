@@ -2,6 +2,7 @@ package com.portfolio;
 
 import java.util.Map;
 import java.util.Optional;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,6 +22,15 @@ public class ApiController {
 
     @Autowired
     private UserRepository user_repository;
+
+    @Autowired
+    private HostnameRepository hostname_repository;
+
+    @Autowired
+    private PortfolioRepository portfolio_repository;
+
+    @Autowired
+    private PortfolioCategoryRepository portfolio_category_repository;
 
     @GetMapping("get_user")
     public String get_user(@RequestParam int id) {
@@ -56,6 +66,56 @@ public class ApiController {
         user_repository.save(user);
         // TODO: Return success: false on error
         return "{ \"success\": true, \"user\": " + user.toString() + "}";
+    }
+
+    @PostMapping("portfolio/create")
+    public String create_dummy_portfolio(@RequestBody Map<String, String> request_body) {
+        String realname = request_body.get("realname");
+
+        Portfolio portfolio = new Portfolio(realname);
+        portfolio_repository.save(portfolio);
+
+        PortfolioCategory category = new PortfolioCategory(
+            "Mobile Applications", "phone_iphone");
+        portfolio.addCategory(category);
+        portfolio_category_repository.save(category);
+
+        portfolio_repository.save(portfolio);
+
+        User user = user_repository.findById(1).get();
+
+        Hostname hostname = new Hostname(realname, user, portfolio);
+        hostname_repository.save(hostname);
+        return "{\"success\": true, \"portfolio\": " + portfolio.toString() + "}";
+    }
+
+    @GetMapping("portfolio/get")
+    public String get_portfolio(@RequestParam String id) {
+        // TODO: Validate the id
+        Optional<Hostname> result = hostname_repository.findById(id);
+        if (result.isPresent()) {
+            Hostname hostname = result.get();
+            Portfolio portfolio = hostname.getPortfolio();
+            String realname = portfolio.getRealname();
+            Iterable<PortfolioCategory> categories = portfolio_category_repository.findAll();
+            for (PortfolioCategory category : categories) {
+                if (category.getPortfolio().getRealname().equals(realname)) {
+                    portfolio.addCategory(category);
+                }
+            }
+            return portfolio.toString();
+        }
+        return null;
+    }
+
+    @GetMapping("portfolio/get/all")
+    public String get_all_hostnames() {
+        Iterable<Hostname> all_hostnames =  hostname_repository.findAll();
+        JSONObject object = new JSONObject();
+        for (Hostname hostname : all_hostnames) {
+            object.put(hostname.getName(), hostname.getPortfolio().toString());
+        }
+        return object.toString();
     }
 
 }
