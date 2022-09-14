@@ -14,10 +14,10 @@ class UserSingleView extends Component {
     super(props);
     this.state = {
       id: -1,
-      name: "",
+      account: null,
       username: "",
       email: "",
-      age: 0
+      age: 0,
     }
   }
 
@@ -36,7 +36,7 @@ class UserSingleView extends Component {
         if (data) {
           this.setState({
             id: data.id,
-            name: data.account.realname,
+            account: data.account,
             username: data.username,
             email: data.email,
             age: data.age
@@ -50,14 +50,14 @@ class UserSingleView extends Component {
     let content;
     if (this.state.id !== -1) {
       content = (<tr>
-        <td>{this.state.id}</td><td>{this.state.name}</td>
+        <td>{this.state.id}</td><td>{this.state.account.realname}</td>
         <td>{this.state.username}</td><td>{this.state.email}</td>
-        <td>{this.state.age}</td>
+        <td>{this.state.age}</td><td>{String(this.state.account.darkMode)}</td>
       </tr>);
     } else {
       content = (<tr>
         <td>Loading...</td><td>Loading...</td><td>Loading...</td>
-        <td>Loading...</td><td>Loading...</td>
+        <td>Loading...</td><td>Loading...</td><td>Loading...</td>
       </tr>);
     }
     return (
@@ -67,7 +67,8 @@ class UserSingleView extends Component {
             <table border="1">
               <thead>
                 <tr>
-                  <th>ID</th><th>Name</th><th>Username</th><th>Email</th><th>Age</th>
+                  <th>ID</th><th>Name</th><th>Username</th>
+                  <th>Email</th><th>Age</th><th>Dark Mode</th>
                 </tr>
               </thead>
               <tbody>

@@ -36,11 +36,11 @@ public class Account {
 
     protected Account() {}
 
-    public Account(User user, String realname) {
+    public Account(User user, String realname, boolean darkMode) {
         this.user = user;
         this.user.setAccount(this);
         this.realname = realname;
-        this.darkMode = false;
+        this.darkMode = darkMode;
         this.categories = new ArrayList<PortfolioCategory>();
     }
 

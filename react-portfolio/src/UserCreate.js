@@ -11,7 +11,8 @@ export default class UserCreate extends React.Component {
         name: "",
         username: "",
         email: "",
-        age: 0
+        age: 0,
+        darkMode: false,
     };
   }
 
@@ -28,6 +29,9 @@ export default class UserCreate extends React.Component {
         break;
       case "age":
         this.setState({age: event.target.value});
+        break;
+      case "darkMode":
+        this.setState({darkMode: !this.state.darkMode});
         break;
       default:
         console.error("Unexpected event target: ", event.target);
@@ -49,7 +53,9 @@ export default class UserCreate extends React.Component {
         name: this.state.name,
         username: this.state.username,
         email: this.state.email,
-        age: this.state.age})
+        age: this.state.age,
+        darkMode: this.state.darkMode,
+      })
     };
     fetch(`${serverAddress}/api/user/create`, requestOptions)
       .then(async response => {
@@ -59,7 +65,9 @@ export default class UserCreate extends React.Component {
             name: "",
             username: "",
             email: "",
-            age: 0});
+            age: 0,
+            darkMode: false,
+          });
 
           const user = data.user;
           let form_response = document.getElementById('form-response');
@@ -88,9 +96,11 @@ export default class UserCreate extends React.Component {
           <label htmlFor="username">Username: </label>
           <input type="text" id="username" name="username" value={this.state.username} onChange={this.handleChange.bind(this)} /><br/>
           <label htmlFor="email">Email: </label>
-          <input type="email" id="email" name="email" value={this.state.email} onChange={this.handleChange.bind(this)} /><br />
+          <input type="email" id="email" name="email" value={this.state.email} onChange={this.handleChange.bind(this)} /><br/>
           <label htmlFor="age">Age: </label>
-          <input type="number" id="age" name="age" value={this.state.age} onChange={this.handleChange.bind(this)} /><br />
+          <input type="number" id="age" name="age" value={this.state.age} onChange={this.handleChange.bind(this)} /><br/>
+          <label htmlFor="darkMode">Dark Mode: </label>
+          <input type="checkbox" id="darkMode" name="darkMode" checked={this.state.darkMode} onChange={this.handleChange.bind(this)} /><br/>
           <span id='form-response'></span>
           <input type="submit" id="submit" name="Create User" />
           </form>

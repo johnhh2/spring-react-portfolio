@@ -58,12 +58,13 @@ public class UserController {
         String realname = requestBody.get("name");
         String username = requestBody.get("username");
         String email = requestBody.get("email");
+        boolean darkMode = Boolean.parseBoolean(requestBody.get("darkMode"));
         int age = Integer.parseInt(requestBody.get("age"));
         // TODO: Add validation for fields
         User user = new User(username, email, age);
         userRepository.save(user);
 
-        Account account = new Account(user, realname);
+        Account account = new Account(user, realname, darkMode);
         accountRepository.save(account);
 
         PortfolioCategory category = new PortfolioCategory(
