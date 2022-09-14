@@ -6,10 +6,10 @@ import './index.css';
 import Portfolio from './Portfolio';
 import Navbar from './Navbar';
 import Info from './Info';
-import UserCreate from './UserCreate';
+import UserCreate from './AuthUserCreate';
 import UserView from './UserView';
 import UserSingleView from './UserSingleView';
-
+import UserLogin from './UserLogin';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -24,6 +24,7 @@ root.render(
           <Route path="/users/create" element={<UserCreate/>}/>
           <Route path="/users/view" element={<UserView/>}/>
           <Route path="/users/view/:id" element={<UserSingleView/>}/>
+          <Route path="/users/login" element={<UserLogin/>}/>
         </Routes>
       </BrowserRouter>
   </React.StrictMode>

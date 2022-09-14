@@ -57,11 +57,12 @@ public class UserController {
     public String createUser(@RequestBody Map<String, String> requestBody) {
         String realname = requestBody.get("name");
         String username = requestBody.get("username");
+        String password = requestBody.get("password");
         String email = requestBody.get("email");
         boolean darkMode = Boolean.parseBoolean(requestBody.get("darkMode"));
         int age = Integer.parseInt(requestBody.get("age"));
         // TODO: Add validation for fields
-        User user = new User(username, email, age);
+        User user = new User(username, password, email, age);
         userRepository.save(user);
 
         Account account = new Account(user, realname, darkMode);

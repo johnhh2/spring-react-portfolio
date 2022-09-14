@@ -21,6 +21,7 @@ export default class Portfolio extends React.Component {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem("AuthToken"),
       },
     };
     fetch(`${serverAddress}/api/portfolio/get`, requestOptions)
