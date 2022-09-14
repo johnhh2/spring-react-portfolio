@@ -44,8 +44,8 @@ export default class UserLogin extends React.Component {
     };
     fetch(`${serverAddress}/api/auth/signin`, requestOptions)
       .then(async response => {
-        const data = await response.json();
         if (response.ok) {
+          const data = await response.json();
           this.setState({
             username: "",
             password: "",
@@ -53,6 +53,13 @@ export default class UserLogin extends React.Component {
           // TODO: redirect and add auth token
           localStorage.setItem("AuthToken", data.tokenType + " " + data.accessToken);
           window.location = "/";
+        } else {
+          let form_response = document.getElementById('form-response');
+          if (response.status === 401) {
+            form_response.innerHTML = "Invalid login credentials.<br>";
+          } else {
+            form_response.innerHTML = "An error occurred while logging in.<br>";
+          }
         }
       })
       .catch(error => {

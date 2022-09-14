@@ -26,6 +26,7 @@ class UserSingleView extends Component {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem("AuthToken"),
       },
     };
     const params_id = this.props.params.id

@@ -18,6 +18,7 @@ export default class UserView extends React.Component {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem("AuthToken"),
       }
     };
     fetch(`${serverAddress}/api/user/get/all`, requestOptions)
