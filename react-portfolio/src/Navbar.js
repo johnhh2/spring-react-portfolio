@@ -55,6 +55,26 @@ export default class Navbar extends React.Component {
       });
   }
 
+  getAuthPage() {
+    if (localStorage.getItem("AuthToken") !== null) {
+      return [
+        {
+          name: "Logout",
+          href: "/users/logout",
+          googleIcon: "logout",
+        },
+      ];
+    } else {
+      return [
+        {
+          name: "Login",
+          href: "/users/login",
+          googleIcon: "login",
+        },
+      ];
+    }
+  }
+
   getPages(insertPages) {
     if (insertPages == null) {
       insertPages = [];
@@ -76,7 +96,7 @@ export default class Navbar extends React.Component {
         href: "/users/create",
         googleIcon: "person",
       },
-    ]);
+    ]).concat(this.getAuthPage());
   }
 
   resize() {

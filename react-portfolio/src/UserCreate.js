@@ -139,8 +139,6 @@ export default class UserCreate extends React.Component {
           <input type="submit" id="submit" name="submit" value="Create User" />
           </form>
           <a href="view">View All Users</a>
-          <a href="login">Login</a>
-          <a href="logout">Logout</a>
         </header>
       </div>
     );
