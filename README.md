@@ -30,33 +30,35 @@ Additionally, download and extract [Maven 3.8.6](https://maven.apache.org/downlo
    - Open a mysql prompt: `sudo mysql --password`
    - Create the database:
 
-```sql
-mysql> CREATE DATABASE portfolio; -- Creates the new database
-mysql> CREATE USER 'user1'@'%' IDENTIFIED BY 'pass'; -- Creates the user
-mysql> GRANT ALL ON portfolio.* TO 'user1'@'%'; -- Gives all privileges to the new user on the newly created database
-```
+        ```sql
+        mysql> CREATE DATABASE portfolio; -- Creates the new database
+        mysql> CREATE USER 'user1'@'%' IDENTIFIED BY 'pass'; -- Creates the user
+        mysql> GRANT ALL ON portfolio.* TO 'user1'@'%'; -- Gives all privileges to the new user on the newly created database
+        mysql> \q
+        ```
 
    - Create the file _spring-portfolio/src/main/resources/application.properties_ and add the following lines, or ensure they already exist there:
 
-```
-spring.jpa.hibernate.ddl-auto=update
-spring.datasource.url=jdbc:mysql://localhost:3306/portfolio
-spring.datasource.username=user1
-spring.datasource.password=pass
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-```
+        ```
+        spring.jpa.hibernate.ddl-auto=update
+        spring.datasource.url=jdbc:mysql://localhost:3306/portfolio
+        spring.datasource.username=user1
+        spring.datasource.password=pass
+        spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+        ```
 
  - Once configured, you should be able to start the back-end server with the command listed in [Startup](https://github.com/johnhh2/spring-react-portfolio/blob/master/README.md#L62). This should create all the necessary tables in the database.
  - Once the tables have been created, you will need to create a few roles in order for the back-end authentication system to work properly.
    - Open a mysql prompt: `sudo mysql`
    - Create roles:
 
-```sql
-mysql> USE portfolio;
-mysql> INSERT INTO role(name) VALUES('ROLE_USER');
-mysql> INSERT INTO role(name) VALUES('ROLE_MODERATOR');
-mysql> INSERT INTO role(name) VALUES('ROLE_ADMIN');
-```
+        ```sql
+        mysql> USE portfolio;
+        mysql> INSERT INTO role(name) VALUES('ROLE_USER');
+        mysql> INSERT INTO role(name) VALUES('ROLE_MODERATOR');
+        mysql> INSERT INTO role(name) VALUES('ROLE_ADMIN');
+        mysql> \q
+        ```
 
   - Your mysql database should now be ready to use.
 
