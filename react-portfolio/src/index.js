@@ -10,6 +10,7 @@ import UserCreate from './UserCreate';
 import UserView from './UserView';
 import UserSingleView from './UserSingleView';
 import UserLogin from './UserLogin';
+import UserLogout from './UserLogout';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -25,6 +26,7 @@ root.render(
           <Route path="/users/view" element={<UserView/>}/>
           <Route path="/users/view/:id" element={<UserSingleView/>}/>
           <Route path="/users/login" element={<UserLogin/>}/>
+          <Route path="/users/logout" element={<UserLogout/>}/>
         </Routes>
       </BrowserRouter>
   </React.StrictMode>

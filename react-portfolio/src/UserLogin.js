@@ -50,8 +50,8 @@ export default class UserLogin extends React.Component {
             username: "",
             password: "",
           });
-          // TODO: redirect and add auth token
           localStorage.setItem("AuthToken", data.tokenType + " " + data.accessToken);
+          localStorage.setItem("AuthID", data.id);
           window.location = "/";
         } else {
           let form_response = document.getElementById('form-response');
@@ -78,8 +78,9 @@ export default class UserLogin extends React.Component {
           <label htmlFor="password">Password: </label>
           <input type="password" id="password" name="password" value={this.state.password} onChange={this.handleChange.bind(this)} /><br/>
           <span id='form-response'></span>
-          <input type="submit" id="submit" name="Create User" />
+          <input type="submit" id="submit" name="submit" value="Login" />
           </form>
+          <a href="/users/create">Create User</a>
         </header>
       </div>
     );

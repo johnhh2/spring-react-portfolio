@@ -101,8 +101,6 @@ export default class UserCreate extends React.Component {
             userRole: false,
             darkMode: false,
           });
-
-          this.render();
         }
         let form_response = document.getElementById('form-response');
         form_response.innerHTML = `${data.message}<br>`;
@@ -110,6 +108,7 @@ export default class UserCreate extends React.Component {
       .catch(error => {
         console.error('Error', error);
       });
+    this.render();
     event.preventDefault();
   }
 
@@ -137,10 +136,11 @@ export default class UserCreate extends React.Component {
           <label htmlFor="darkMode">Dark Mode: </label>
           <input type="checkbox" id="darkMode" name="darkMode" checked={this.state.darkMode} onChange={this.handleChange.bind(this)} /><br/>
           <span id='form-response'></span>
-          <input type="submit" id="submit" name="Create User" />
+          <input type="submit" id="submit" name="submit" value="Create User" />
           </form>
           <a href="view">View All Users</a>
           <a href="login">Login</a>
+          <a href="logout">Logout</a>
         </header>
       </div>
     );
