@@ -11,7 +11,11 @@ export default class UserCreate extends React.Component {
         name: "",
         username: "",
         email: "",
+        password: "",
         age: 0,
+        adminRole: false,
+        modRole: false,
+        userRole: false,
         darkMode: false,
     };
   }
@@ -30,6 +34,18 @@ export default class UserCreate extends React.Component {
       case "age":
         this.setState({age: event.target.value});
         break;
+      case "password":
+        this.setState({password: event.target.value});
+        break;
+      case "adminRole":
+        this.setState({adminRole: !this.state.adminRole});
+        break;
+      case "modRole":
+        this.setState({modRole: !this.state.modRole});
+        break;
+      case "userRole":
+        this.setState({userRole: !this.state.userRole});
+        break;
       case "darkMode":
         this.setState({darkMode: !this.state.darkMode});
         break;
@@ -43,6 +59,17 @@ export default class UserCreate extends React.Component {
     }
   }
 
+  generateRoles() {
+    let roles = [];
+    if (this.state.adminRole)
+      roles.push("admin");
+    if (this.state.modRole)
+      roles.push("mod");
+    if (this.state.userRole)
+      roles.push("user");
+    return roles;
+  }
+
   handleSubmit(event) {
     const requestOptions = {
       method: 'POST',
@@ -50,35 +77,35 @@ export default class UserCreate extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name: this.state.name,
+        realname: this.state.name,
         username: this.state.username,
         email: this.state.email,
         age: this.state.age,
+        password: this.state.password,
+        role: this.generateRoles(),
         darkMode: this.state.darkMode,
       })
     };
-    fetch(`${serverAddress}/api/user/create`, requestOptions)
+    fetch(`${serverAddress}/api/auth/signup`, requestOptions)
       .then(async response => {
         const data = await response.json();
-        if (data.success) {
+        if (response.ok) {
           this.setState({
             name: "",
             username: "",
             email: "",
             age: 0,
+            password: "",
+            adminRole: false,
+            modRole: false,
+            userRole: false,
             darkMode: false,
           });
 
-          const user = data.user;
-          let form_response = document.getElementById('form-response');
-          form_response.innerHTML = `User created successfully.<br>
-            <a href="view/${user.id}">View ${user.username}</a><br>`;
           this.render();
-        } else {
-          // TODO: Display reason for error
-          let form_response = document.getElementById('form-response');
-          form_response.innerHTML = "An error occurred while creating the user.<br>";
         }
+        let form_response = document.getElementById('form-response');
+        form_response.innerHTML = `${data.message}<br>`;
       })
       .catch(error => {
         console.error('Error', error);
@@ -97,14 +124,23 @@ export default class UserCreate extends React.Component {
           <input type="text" id="username" name="username" value={this.state.username} onChange={this.handleChange.bind(this)} /><br/>
           <label htmlFor="email">Email: </label>
           <input type="email" id="email" name="email" value={this.state.email} onChange={this.handleChange.bind(this)} /><br/>
+          <label htmlFor="password">Password: </label>
+          <input type="password" id="password" name="password" value={this.state.password} onChange={this.handleChange.bind(this)} /><br/>
           <label htmlFor="age">Age: </label>
           <input type="number" id="age" name="age" value={this.state.age} onChange={this.handleChange.bind(this)} /><br/>
+          <label htmlFor="adminRole">Admin Role: </label>
+          <input type="checkbox" id="adminRole" name="adminRole" checked={this.state.adminRole} onChange={this.handleChange.bind(this)} /><br/>
+          <label htmlFor="modRole">Mod Role: </label>
+          <input type="checkbox" id="modRole" name="modRole" checked={this.state.modRole} onChange={this.handleChange.bind(this)} /><br/>
+          <label htmlFor="userRole">User Role: </label>
+          <input type="checkbox" id="userRole" name="userRole" checked={this.state.userRole} onChange={this.handleChange.bind(this)} /><br/>
           <label htmlFor="darkMode">Dark Mode: </label>
           <input type="checkbox" id="darkMode" name="darkMode" checked={this.state.darkMode} onChange={this.handleChange.bind(this)} /><br/>
           <span id='form-response'></span>
           <input type="submit" id="submit" name="Create User" />
           </form>
           <a href="view">View All Users</a>
+          <a href="login">Login</a>
         </header>
       </div>
     );

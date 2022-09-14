@@ -6,7 +6,7 @@ import './index.css';
 import Portfolio from './Portfolio';
 import Navbar from './Navbar';
 import Info from './Info';
-import UserCreate from './AuthUserCreate';
+import UserCreate from './UserCreate';
 import UserView from './UserView';
 import UserSingleView from './UserSingleView';
 import UserLogin from './UserLogin';
