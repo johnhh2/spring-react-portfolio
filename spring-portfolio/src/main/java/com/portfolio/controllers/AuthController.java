@@ -1,4 +1,4 @@
-package com.portfolio;
+package com.portfolio.controllers;
 
 import java.util.HashSet;
 import java.util.List;
@@ -20,7 +20,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+import com.portfolio.models.Account;
+import com.portfolio.models.Hostname;
+import com.portfolio.models.JwtResponse;
+import com.portfolio.models.LoginRequest;
+import com.portfolio.models.MessageResponse;
+import com.portfolio.models.PortfolioCategory;
+import com.portfolio.models.Role;
+import com.portfolio.models.RoleEnum;
+import com.portfolio.models.SignupRequest;
+import com.portfolio.models.User;
+import com.portfolio.repository.AccountRepository;
+import com.portfolio.repository.HostnameRepository;
+import com.portfolio.repository.PortfolioCategoryRepository;
+import com.portfolio.repository.RoleRepository;
+import com.portfolio.repository.UserRepository;
+import com.portfolio.security.jwt.JwtUtils;
+import com.portfolio.security.services.UserDetailsImpl;
+
+@CrossOrigin(origins="http://localhost:3000", maxAge=3600)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {

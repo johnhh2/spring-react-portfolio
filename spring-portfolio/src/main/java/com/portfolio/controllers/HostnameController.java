@@ -1,4 +1,4 @@
-package com.portfolio;
+package com.portfolio.controllers;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -8,6 +8,15 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.portfolio.models.Account;
+import com.portfolio.models.Hostname;
+import com.portfolio.models.PortfolioCategory;
+import com.portfolio.models.User;
+import com.portfolio.repository.AccountRepository;
+import com.portfolio.repository.HostnameRepository;
+import com.portfolio.repository.PortfolioCategoryRepository;
+import com.portfolio.repository.UserRepository;
 
 @CrossOrigin(origins="http://localhost:3000")
 @RestController

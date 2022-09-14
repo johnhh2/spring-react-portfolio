@@ -1,4 +1,6 @@
-package com.portfolio;
+package com.portfolio.models;
+
+import java.text.Normalizer;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -8,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import java.text.Normalizer;
-
 import org.json.JSONObject;
 
 @Entity
@@ -17,7 +17,7 @@ public class PortfolioCategory {
     private static final int MAX_SLUG_LENGTH = 256;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="account_id")

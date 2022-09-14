@@ -1,4 +1,4 @@
-package com.portfolio;
+package com.portfolio.controllers;
 
 import java.util.Map;
 import java.util.Optional;
@@ -15,6 +15,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.portfolio.models.Account;
+import com.portfolio.models.Hostname;
+import com.portfolio.models.PortfolioCategory;
+import com.portfolio.models.User;
+import com.portfolio.repository.AccountRepository;
+import com.portfolio.repository.HostnameRepository;
+import com.portfolio.repository.PortfolioCategoryRepository;
+import com.portfolio.repository.UserRepository;
 
 @CrossOrigin(origins="http://localhost:3000")
 @RestController

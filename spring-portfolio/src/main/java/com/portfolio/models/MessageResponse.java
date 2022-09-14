@@ -1,4 +1,4 @@
-package com.portfolio;
+package com.portfolio.models;
 
 public class MessageResponse {
   private String message;

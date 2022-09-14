@@ -1,4 +1,4 @@
-package com.portfolio;
+package com.portfolio.models;
 
 public enum RoleEnum {
     ROLE_USER,
