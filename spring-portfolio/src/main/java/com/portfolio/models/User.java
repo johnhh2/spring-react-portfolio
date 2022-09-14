@@ -1,4 +1,4 @@
-package com.portfolio;
+package com.portfolio.models;
 
 import org.json.JSONObject;
 import java.util.HashSet;

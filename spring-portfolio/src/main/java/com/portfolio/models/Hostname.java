@@ -1,4 +1,4 @@
-package com.portfolio;
+package com.portfolio.models;
 
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;

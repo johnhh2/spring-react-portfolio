@@ -1,4 +1,4 @@
-package com.portfolio;
+package com.portfolio.security.jwt;
 
 import java.io.IOException;
 

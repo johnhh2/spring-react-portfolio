@@ -1,4 +1,4 @@
-package com.portfolio;
+package com.portfolio.models;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -11,7 +11,7 @@ import javax.persistence.Column;
 
 
 @Entity
-@Table(name = "roles")
+@Table
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

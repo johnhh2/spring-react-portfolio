@@ -1,4 +1,4 @@
-package com.portfolio;
+package com.portfolio.controllers;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
