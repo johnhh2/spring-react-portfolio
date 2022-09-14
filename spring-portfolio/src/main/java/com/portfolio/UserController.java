@@ -34,7 +34,7 @@ public class UserController {
     private HostnameRepository hostnameRepository;
 
     @GetMapping("get")
-    public String getUser(@RequestParam int id) {
+    public String getUser(@RequestParam long id) {
         // TODO: Validate the id
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {

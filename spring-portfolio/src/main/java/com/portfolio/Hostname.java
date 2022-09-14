@@ -13,7 +13,7 @@ import javax.persistence.CascadeType;
 public class Hostname {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column(unique=true)
     private String name;

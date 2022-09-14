@@ -18,7 +18,7 @@ public class PortfolioCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="account_id")
     private Account account;

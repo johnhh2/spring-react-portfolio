@@ -12,7 +12,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @OneToOne
     private Account account;
@@ -20,7 +20,6 @@ public class User {
     private String username;
     private String email;
     private int age;
-
 
     protected User() {}
 
@@ -30,7 +29,7 @@ public class User {
         this.age = age;
     }
 
-    public int getId() { return this.id; }
+    public long getId() { return this.id; }
     public Account getAccount() { return this.account; }
 
     public void setAccount(Account account) { this.account = account; }

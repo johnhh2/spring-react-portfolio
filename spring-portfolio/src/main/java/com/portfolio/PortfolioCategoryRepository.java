@@ -8,6 +8,6 @@ import com.portfolio.PortfolioCategory;
 // CRUD refers Create, Read, Update, Delete
 
 public interface PortfolioCategoryRepository 
-    extends CrudRepository<PortfolioCategory, Integer> {
+    extends CrudRepository<PortfolioCategory, Long> {
 
 }

@@ -19,7 +19,7 @@ import org.json.JSONObject;
 public class Account {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     // Account Settings
     @OneToOne(cascade=CascadeType.ALL)
