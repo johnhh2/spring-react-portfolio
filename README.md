@@ -46,12 +46,13 @@ spring.datasource.password=pass
 spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 ```
 
- - Once configured, you should be able to start the back-end server with the command listed in Startup. This should create all the necessary tables in the database.
+ - Once configured, you should be able to start the back-end server with the command listed in [Startup](https://github.com/johnhh2/spring-react-portfolio/blob/master/README.md#L62). This should create all the necessary tables in the database.
  - Once the tables have been created, you will need to create a few roles in order for the back-end authentication system to work properly.
-   - Open a mysql prompt: `sudo mysql --password`
+   - Open a mysql prompt: `sudo mysql`
    - Create roles:
 
 ```sql
+mysql> USE portfolio;
 mysql> INSERT INTO role(name) VALUES('ROLE_USER');
 mysql> INSERT INTO role(name) VALUES('ROLE_MODERATOR');
 mysql> INSERT INTO role(name) VALUES('ROLE_ADMIN');
