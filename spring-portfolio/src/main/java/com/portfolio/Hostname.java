@@ -12,6 +12,7 @@ import javax.persistence.CascadeType;
 @Entity
 public class Hostname {
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
     @Column(unique=true)

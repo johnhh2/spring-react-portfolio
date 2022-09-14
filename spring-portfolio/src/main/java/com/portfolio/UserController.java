@@ -71,7 +71,13 @@ public class UserController {
         account.addCategory(category);
         portfolioCategoryRepository.save(category);
 
-        Hostname hostname = new Hostname("localhost", user, account);
+        String host;
+        if (username.equals("mpurnell1") || username.equals("johnhh2"))
+            host = "localhost";
+        else
+            host = username;
+
+        Hostname hostname = new Hostname(host, user, account);
         hostnameRepository.save(hostname);
         // TODO: Return success: false on error
         JSONObject object = new JSONObject();
