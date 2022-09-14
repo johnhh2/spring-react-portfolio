@@ -14,11 +14,11 @@ import javax.persistence.Column;
 @Table
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 20)
+    @Column(length=20)
     private RoleEnum name;
 
     public Role() {

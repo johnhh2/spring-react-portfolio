@@ -17,7 +17,7 @@ public class PortfolioCategory {
     private static final int MAX_SLUG_LENGTH = 256;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="account_id")
