@@ -11,7 +11,8 @@ export default class Navbar extends React.Component {
     super(props);
     this.state = {
       hideSidebar: false,
-      pages: this.getPages(),
+      authenticated: false,
+      pages: [],
     };
   }
 
@@ -26,6 +27,20 @@ export default class Navbar extends React.Component {
         'Authorization': localStorage.getItem("AuthToken"),
       },
     };
+    const id = localStorage.getItem("AuthID");
+    fetch(`${serverAddress}/api/user/get?id=${id}`, requestOptions)
+      .then(async response => {
+        const data = await response.json();
+        console.log(data);
+        if (data.length === 0) {
+          localStorage.removeItem("AuthToken");
+        } else {
+          this.setState({authenticated: true});
+        }
+      });
+
+    this.setState({pages: this.getPages()})
+
     fetch(`${serverAddress}/api/hostname/get`, requestOptions)
       .then(async response => {
         const data = await response.json();
@@ -55,47 +70,29 @@ export default class Navbar extends React.Component {
       });
   }
 
-  getAuthPage() {
-    if (localStorage.getItem("AuthToken") !== null) {
-      const requestOptions = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': localStorage.getItem("AuthToken"),
+  getAuthPages() {
+    if (this.state.authenticated) {
+      return [
+        {
+          name: "Settings",
+          href: "/account/edit",
+          googleIcon: "settings",
         },
-      };
-      let authenticated = false;
-      fetch(`${serverAddress}/api/hostname/get`, requestOptions)
-        .then(async response => {
-          const data = await response.json();
-          if (data.length === 0) {
-            localStorage.removeItem("AuthToken");
-          } else {
-            authenticated = true;
-          }
-        });
-      if (authenticated) {
-        return [
-          {
-            name: "Settings",
-            href: "/account/edit",
-            googleIcon: "Settings",
-          },
-          {
-            name: "Logout",
-            href: "/users/logout",
-            googleIcon: "logout",
-          },
-        ];
-      }
+        {
+          name: "Logout",
+          href: "/users/logout",
+          googleIcon: "logout",
+        },
+      ];
+    } else {
+      return [
+        {
+          name: "Login",
+          href: "/users/login",
+          googleIcon: "login",
+        },
+      ];
     }
-    return [
-      {
-        name: "Login",
-        href: "/users/login",
-        googleIcon: "login",
-      },
-    ];
   }
 
   getPages(insertPages) {
@@ -119,7 +116,7 @@ export default class Navbar extends React.Component {
         href: "/users/create",
         googleIcon: "person",
       },
-    ]).concat(this.getAuthPage());
+    ]).concat(this.getAuthPages());
   }
 
   resize() {
