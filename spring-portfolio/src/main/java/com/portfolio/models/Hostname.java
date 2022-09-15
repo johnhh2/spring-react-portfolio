@@ -25,19 +25,25 @@ public class Hostname {
     @OneToOne
     private Account account;
 
+    private boolean enabled;
+
     protected Hostname() {}
 
     public Hostname(String name, User user, Account account) {
         this.name = name;
         this.user = user;
         this.account = account;
+        this.enabled = true;
     }
 
     public String getName() { return this.name; }
     public User getUser() { return this.user; }
     public Account getAccount() { return this.account; }
+    public boolean getEnabled() { return this.enabled; }
 
     public void setName(String name) { this.name = name; }
+
+    public void setEnabled(boolean enabled) { this.enabled = enabled; }
 
     public String toString() {
         return String.format(

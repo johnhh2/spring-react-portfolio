@@ -42,21 +42,24 @@ public class HostnameController {
         // get current hostname
         String hostname = InetAddress.getLoopbackAddress().getHostName();
 
+
         JSONObject object = new JSONObject();
 
         // Query Hostnames to find user of the hostnames portfolio
         Hostname host = hostnameRepository.findByName(hostname);
         if (host != null) {
-            User user = host.getUser();
-            Account account = user.getAccount();
+            if (host.getEnabled()) {
+                User user = host.getUser();
+                Account account = user.getAccount();
 
-            JSONArray categories = new JSONArray();
-            for (PortfolioCategory category : account.getCategories())
-                categories.put(category.toJson());
-            JSONArray projects = new JSONArray();
-            object.put("realname", account.getRealname());
-            object.put("categories", categories);
-            object.put("projects", projects);
+                JSONArray categories = new JSONArray();
+                for (PortfolioCategory category : account.getCategories())
+                    categories.put(category.toJson());
+                JSONArray projects = new JSONArray();
+                object.put("realname", account.getRealname());
+                object.put("categories", categories);
+                object.put("projects", projects);
+            }
         }
 
         return object.toString();
