@@ -31,10 +31,10 @@ Additionally, download and extract [Maven 3.8.6](https://maven.apache.org/downlo
    - Create the database:
 
         ```sql
-        mysql> CREATE DATABASE portfolio; -- Creates the new database
-        mysql> CREATE USER 'user1'@'%' IDENTIFIED BY 'pass'; -- Creates the user
-        mysql> GRANT ALL ON portfolio.* TO 'user1'@'%'; -- Gives all privileges to the new user on the newly created database
-        mysql> \q
+        CREATE DATABASE portfolio; -- Creates the new database
+        CREATE USER 'user1'@'%' IDENTIFIED BY 'pass'; -- Creates the user
+        GRANT ALL ON portfolio.* TO 'user1'@'%'; -- Gives all privileges to the new user on the newly created database
+        \q
         ```
 
    - Create the file _spring-portfolio/src/main/resources/application.properties_ and add the following lines, or ensure they already exist there:
@@ -53,11 +53,11 @@ Additionally, download and extract [Maven 3.8.6](https://maven.apache.org/downlo
    - Create roles:
 
         ```sql
-        mysql> USE portfolio;
-        mysql> INSERT INTO role(name) VALUES('ROLE_USER');
-        mysql> INSERT INTO role(name) VALUES('ROLE_MODERATOR');
-        mysql> INSERT INTO role(name) VALUES('ROLE_ADMIN');
-        mysql> \q
+        USE portfolio;
+        INSERT INTO role(name) VALUES('ROLE_USER');
+        INSERT INTO role(name) VALUES('ROLE_MODERATOR');
+        INSERT INTO role(name) VALUES('ROLE_ADMIN');
+        \q
         ```
 
   - Your mysql database should now be ready to use.
