@@ -18,6 +18,8 @@ import com.portfolio.repository.HostnameRepository;
 import com.portfolio.repository.PortfolioCategoryRepository;
 import com.portfolio.repository.UserRepository;
 
+import java.net.InetAddress;
+
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
 @RequestMapping(value="/api/portfolio",
@@ -37,12 +39,12 @@ public class HostnameController {
 
     @GetMapping("get")
     public String get_portfolio() {
-        /* TODO: get current hostname */
-        String hostname = "localhost";
+        // get current hostname
+        String hostname = InetAddress.getLoopbackAddress().getHostName();
 
         JSONObject object = new JSONObject();
 
-        // TODO: Query Hostnames to find user of the hostnames portfolio
+        // Query Hostnames to find user of the hostnames portfolio
         Hostname host = hostnameRepository.findByName(hostname);
         if (host != null) {
             User user = host.getUser();
