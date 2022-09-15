@@ -24,6 +24,7 @@ You will need [JDK 17](https://www.oracle.com/java/technologies/downloads/#java1
 Additionally, download and extract [Maven 3.8.6](https://maven.apache.org/download.cgi).
 
 ### Database setup
+##### Creating MySQL database
  - Install mysql: `sudo apt install mysql-server`
  - Start the mysql service: `sudo service mysql start`
  - Configure the database:
@@ -48,19 +49,14 @@ Additionally, download and extract [Maven 3.8.6](https://maven.apache.org/downlo
         ```
 
  - Once configured, you should be able to start the back-end server with the command listed in [Startup](https://github.com/johnhh2/spring-react-portfolio#startup). This should create all the necessary tables in the database.
- - Once the tables have been created, you will need to create a few roles in order for the back-end authentication system to work properly.
-   - Open a mysql prompt: `sudo mysql`
-   - Create roles:
+ - Once the tables have been created, you will need to create a few roles in order for the back-end authentication system to work properly: `sudo mysql -c < create_roles.sql`
+ - Your mysql database should now be ready to use.
 
-        ```sql
-        USE portfolio;
-        INSERT INTO role(name) VALUES('ROLE_USER');
-        INSERT INTO role(name) VALUES('ROLE_MODERATOR');
-        INSERT INTO role(name) VALUES('ROLE_ADMIN');
-        \q
-        ```
-
-  - Your mysql database should now be ready to use.
+#### Recreating the database
+ - Should you ever need to reset the database, follow the below steps:
+ - Drop the existing database and create a new one: `sudo mysql -c < recreate_db.sql`
+ - Restart your backend server with [Startup](https://github.com/johnhh2/spring-react-portfolio#startup) instructions
+ - Create the user roles: `sudo mysql -c < create_roles.sql`
 
 ### Startup
  - Launch the back-end:
