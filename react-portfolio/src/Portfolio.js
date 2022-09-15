@@ -24,7 +24,7 @@ export default class Portfolio extends React.Component {
         'Authorization': localStorage.getItem("AuthToken"),
       },
     };
-    fetch(`${serverAddress}/api/portfolio/get`, requestOptions)
+    fetch(`${serverAddress}/api/hostname/get`, requestOptions)
       .then(async response => {
          const data = await response.json();
          this.setState({
