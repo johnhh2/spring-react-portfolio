@@ -22,7 +22,7 @@ import java.net.InetAddress;
 
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
-@RequestMapping(value="/api/portfolio",
+@RequestMapping(value="/api/hostname",
                 produces=MediaType.APPLICATION_JSON_VALUE)
 public class HostnameController {
     @Autowired
@@ -38,7 +38,7 @@ public class HostnameController {
     }
 
     @GetMapping("get")
-    public String get_portfolio() {
+    public String get_hostname() {
         // get current hostname
         String hostname = InetAddress.getLoopbackAddress().getHostName();
 
