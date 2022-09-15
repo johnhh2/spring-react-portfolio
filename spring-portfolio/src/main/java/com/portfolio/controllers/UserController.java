@@ -15,13 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.portfolio.models.Account;
-import com.portfolio.models.Hostname;
-import com.portfolio.models.PortfolioCategory;
 import com.portfolio.models.User;
-import com.portfolio.repository.AccountRepository;
-import com.portfolio.repository.HostnameRepository;
-import com.portfolio.repository.PortfolioCategoryRepository;
 import com.portfolio.repository.UserRepository;
 
 @CrossOrigin(origins="http://localhost:3000")
@@ -31,15 +25,6 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private AccountRepository accountRepository;
-
-    @Autowired
-    private PortfolioCategoryRepository portfolioCategoryRepository;
-
-    @Autowired
-    private HostnameRepository hostnameRepository;
 
     @GetMapping("get")
     public String getUser(@RequestParam long id) {
@@ -60,39 +45,4 @@ public class UserController {
         return object.toString();
     }
 
-    @PostMapping("create")
-    @Transactional
-    public String createUser(@RequestBody Map<String, String> requestBody) {
-        String realname = requestBody.get("name");
-        String username = requestBody.get("username");
-        String password = requestBody.get("password");
-        String email = requestBody.get("email");
-        boolean darkMode = Boolean.parseBoolean(requestBody.get("darkMode"));
-        int age = Integer.parseInt(requestBody.get("age"));
-        // TODO: Add validation for fields
-        User user = new User(username, password, email, age);
-        userRepository.save(user);
-
-        Account account = new Account(user, realname, darkMode);
-        accountRepository.save(account);
-
-        PortfolioCategory category = new PortfolioCategory(
-            "Mobile Applications", "phone_iphone");
-        account.addCategory(category);
-        portfolioCategoryRepository.save(category);
-
-        String host;
-        if (username.equals("mpurnell1") || username.equals("johnhh2"))
-            host = "localhost";
-        else
-            host = username;
-
-        Hostname hostname = new Hostname(host, user, account);
-        hostnameRepository.save(hostname);
-        // TODO: Return success: false on error
-        JSONObject object = new JSONObject();
-        object.put("success", true);
-        object.put("user", user.toJson());
-        return object.toString();
-    }
 }

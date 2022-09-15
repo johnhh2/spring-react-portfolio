@@ -77,6 +77,11 @@ export default class Navbar extends React.Component {
       if (authenticated) {
         return [
           {
+            name: "Settings",
+            href: "/account/edit",
+            googleIcon: "Settings",
+          },
+          {
             name: "Logout",
             href: "/users/logout",
             googleIcon: "logout",
@@ -120,7 +125,7 @@ export default class Navbar extends React.Component {
   resize() {
     let currentHideNav = (window.innerWidth < 760);
     if (currentHideNav !== this.state.hideNav) {
-      this.setState({hideNav: currentHideNav});
+      this.setState({hideSidebar: currentHideNav});
     }
   }
 

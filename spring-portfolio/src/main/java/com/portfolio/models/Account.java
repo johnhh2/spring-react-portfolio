@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -26,6 +27,10 @@ public class Account {
     private User user;
     private String realname;
     private boolean darkMode;
+    
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="hostname_id", referencedColumnName="id")
+    private Hostname hostname;
 
     // Portfolio
     @MapKey(name="id")
@@ -34,7 +39,17 @@ public class Account {
     // TODO: Make a Project class to store projects
 //    private JSONArray projects;
 
+
     protected Account() {}
+
+    public Account(User user) {
+        this.user = user;
+        this.user.setAccount(this);
+        this.realname = "";
+        this.darkMode = false;
+        this.categories = new ArrayList<PortfolioCategory>();
+        this.hostname = new Hostname("localhost");
+    }
 
     public Account(User user, String realname, boolean darkMode) {
         this.user = user;
@@ -42,10 +57,12 @@ public class Account {
         this.realname = realname;
         this.darkMode = darkMode;
         this.categories = new ArrayList<PortfolioCategory>();
+        this.hostname = new Hostname("localhost");
     }
 
     public User getUser() { return this.user; }
     public String getRealname() { return this.realname; }
+    public Hostname getHostname() { return this.hostname; }
     public boolean getDarkMode() { return this.darkMode; }
     public List<PortfolioCategory> getCategories() { return this.categories; }
 
@@ -61,6 +78,7 @@ public class Account {
         object.put("id", this.id);
         object.put("realname", this.realname);
         object.put("darkMode", this.darkMode);
+        object.put("hostname", this.hostname.toJson());
         JSONArray categories = new JSONArray();
         for (PortfolioCategory category : this.categories)
             categories.put(category);

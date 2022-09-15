@@ -8,7 +8,6 @@ export default class UserCreate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        name: "",
         username: "",
         email: "",
         password: "",
@@ -22,9 +21,6 @@ export default class UserCreate extends React.Component {
 
   handleChange(event) {
     switch (event.target.id) {
-      case "name":
-        this.setState({name: event.target.value});
-        break;
       case "username":
         this.setState({username: event.target.value});
         break;
@@ -77,7 +73,6 @@ export default class UserCreate extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        realname: this.state.name,
         username: this.state.username,
         email: this.state.email,
         age: this.state.age,
@@ -91,7 +86,6 @@ export default class UserCreate extends React.Component {
         const data = await response.json();
         if (response.ok) {
           this.setState({
-            name: "",
             username: "",
             email: "",
             age: 0,
@@ -117,8 +111,6 @@ export default class UserCreate extends React.Component {
       <div className="UserManagement">
         <header className="UserManagement-header">
           <form onSubmit={this.handleSubmit.bind(this)}>
-          <label htmlFor="name">Name: </label>
-          <input type="text" id="name" name="name" value={this.state.name} onChange={this.handleChange.bind(this)} /><br/>
           <label htmlFor="username">Username: </label>
           <input type="text" id="username" name="username" value={this.state.username} onChange={this.handleChange.bind(this)} /><br/>
           <label htmlFor="email">Email: </label>

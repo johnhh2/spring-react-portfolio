@@ -1,5 +1,7 @@
 package com.portfolio.controllers;
 
+import java.util.Optional;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +30,16 @@ public class HostnameController {
     @Autowired
     private HostnameRepository hostnameRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @GetMapping("get/all")
     public String getAllHostnames() {
         Iterable<Hostname> allHostnames =  hostnameRepository.findAll();
-        JSONObject object = new JSONObject();
+        JSONArray hostnames = new JSONArray();
         for (Hostname hostname : allHostnames)
-            object.put(hostname.getName(), hostname.getAccount().toJson());
-        return object.toString();
+            hostnames.put(hostname.getName());
+        return hostnames.toString();
     }
 
     @GetMapping("get")
@@ -47,10 +52,10 @@ public class HostnameController {
 
         // Query Hostnames to find user of the hostnames portfolio
         Hostname host = hostnameRepository.findByName(hostname);
-        if (host != null) {
-            if (host.getEnabled()) {
-                User user = host.getUser();
-                Account account = user.getAccount();
+        Optional<User> user = userRepository.findByAccount_Hostname_name(hostname);
+        if (user.isPresent()) {
+            if (user.get().getAccount().getHostname().getEnabled()) {
+                Account account = user.get().getAccount();
 
                 JSONArray categories = new JSONArray();
                 for (PortfolioCategory category : account.getCategories())

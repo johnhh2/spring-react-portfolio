@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import org.json.JSONObject;
+
 @Entity
 public class Hostname {
     @Id
@@ -18,36 +20,33 @@ public class Hostname {
     @Column(unique=true)
     private String name;
 
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="user_id", referencedColumnName="id")
-    private User user;
-
-    @OneToOne
-    private Account account;
-
     private boolean enabled;
 
     protected Hostname() {}
 
-    public Hostname(String name, User user, Account account) {
+    public Hostname(String name) {
         this.name = name;
-        this.user = user;
-        this.account = account;
         this.enabled = true;
     }
 
     public String getName() { return this.name; }
-    public User getUser() { return this.user; }
-    public Account getAccount() { return this.account; }
     public boolean getEnabled() { return this.enabled; }
 
     public void setName(String name) { this.name = name; }
 
     public void setEnabled(boolean enabled) { this.enabled = enabled; }
 
+    public JSONObject toJson() {
+        JSONObject object = new JSONObject();
+        object.put("name", this.name);
+        object.put("enabled", this.enabled);
+
+        return object;
+    }
+
     public String toString() {
         return String.format(
-            "Hostname(id: %S, name: %s, user: %s, account: %s)",
-            this.id, this.name, this.user.toString(), this.account.toString());
+            "Hostname(id: %S, name: %s, enabled: %s)",
+            this.id, this.name, this.enabled);
     }
 }

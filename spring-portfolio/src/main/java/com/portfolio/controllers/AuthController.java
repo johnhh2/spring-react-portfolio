@@ -105,7 +105,6 @@ public class AuthController {
         String username = signUpRequest.getUsername();
         String password = encoder.encode(signUpRequest.getPassword());
         String email = signUpRequest.getEmail();
-        String realname = signUpRequest.getRealname();
         int age = signUpRequest.getAge();
         boolean darkMode = signUpRequest.getDarkMode();
         Set<String> strRoles = signUpRequest.getRole();
@@ -144,22 +143,6 @@ public class AuthController {
         user.setRoles(roles);
         userRepository.save(user);
 
-        Account account = new Account(user, realname, darkMode);
-        accountRepository.save(account);
-
-        PortfolioCategory category = new PortfolioCategory(
-            "Mobile Applications", "phone_iphone");
-        account.addCategory(category);
-        portfolioCategoryRepository.save(category);
-
-        String host;
-        if (username.equals("mpurnell1") || username.equals("johnhh2"))
-            host = "localhost";
-        else
-            host = username;
-
-        Hostname hostname = new Hostname(host, user, account);
-        hostnameRepository.save(hostname);
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 }

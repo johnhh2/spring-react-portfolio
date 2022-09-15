@@ -3,6 +3,7 @@ package com.portfolio.models;
 import org.json.JSONObject;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class User {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private Account account;
 
     @NotBlank
@@ -60,6 +61,7 @@ public class User {
         this.password = password;
         this.email = email;
         this.age = age;
+        this.account = new Account(this);
     }
 
     public long getId() { return this.id; }
