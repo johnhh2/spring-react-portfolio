@@ -57,22 +57,40 @@ export default class Navbar extends React.Component {
 
   getAuthPage() {
     if (localStorage.getItem("AuthToken") !== null) {
-      return [
-        {
-          name: "Logout",
-          href: "/users/logout",
-          googleIcon: "logout",
+      const requestOptions = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': localStorage.getItem("AuthToken"),
         },
-      ];
-    } else {
-      return [
-        {
-          name: "Login",
-          href: "/users/login",
-          googleIcon: "login",
-        },
-      ];
+      };
+      let authenticated = false;
+      fetch(`${serverAddress}/api/hostname/get`, requestOptions)
+        .then(async response => {
+          const data = await response.json();
+          if (data.length === 0) {
+            localStorage.removeItem("AuthToken");
+          } else {
+            authenticated = true;
+          }
+        });
+      if (authenticated) {
+        return [
+          {
+            name: "Logout",
+            href: "/users/logout",
+            googleIcon: "logout",
+          },
+        ];
+      }
     }
+    return [
+      {
+        name: "Login",
+        href: "/users/login",
+        googleIcon: "login",
+      },
+    ];
   }
 
   getPages(insertPages) {
