@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.portfolio.models.Account;
+import com.portfolio.models.EditAccountRequest;
 import com.portfolio.models.Hostname;
 import com.portfolio.models.PortfolioCategory;
 import com.portfolio.repository.AccountRepository;
@@ -41,15 +42,29 @@ public class AccountController {
     private HostnameRepository hostnameRepository;
 
     @PostMapping("edit")
-    public String account_edit(@RequestParam long account_id, @RequestBody Map<Field, String> requestBody) {
-        Account account = accountRepository.getById(account_id);
-        for (Field key : requestBody.keySet()) {
-            String value = requestBody.get(key);
-            ReflectionUtils.setField(key, account, value);
+    public String editAccount(@RequestParam long userId, @RequestBody EditAccountRequest editAccountRequest) {
+        Account account = accountRepository.getByUser_id(userId);
+        String realname = editAccountRequest.getName();
+        String hostnameName = editAccountRequest.getHostname();
+        boolean hostnameEnabled = editAccountRequest.getHostnameEnabled();
+        boolean darkMode = editAccountRequest.getDarkMode();
+
+        Optional<Hostname> result = hostnameRepository.findByName(hostnameName);
+        Hostname hostname;
+        if (result.isPresent()) {
+            hostname = result.get();
+        } else {
+            hostname = new Hostname(hostnameName);
         }
+        hostname.setEnabled(hostnameEnabled);
+
+        account.setRealname(realname);
+        account.setHostname(hostname);
+        account.setDarkMode(darkMode);
+
         JSONObject object = new JSONObject();
         object.put("success", true);
-        object.put("message", "You successfully updated your account");
+        object.put("message", "Your account has been successfully updated.");
 
         return object.toString();
     }

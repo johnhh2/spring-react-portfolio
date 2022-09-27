@@ -51,7 +51,7 @@ public class HostnameController {
         JSONObject object = new JSONObject();
 
         // Query Hostnames to find user of the hostnames portfolio
-        Hostname host = hostnameRepository.findByName(hostname);
+        Hostname host = hostnameRepository.getByName(hostname);
         Optional<User> user = userRepository.findByAccount_Hostname_name(hostname);
         if (user.isPresent()) {
             if (user.get().getAccount().getHostname().getEnabled()) {

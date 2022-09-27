@@ -13,4 +13,5 @@ import com.portfolio.models.Account;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
+    Account getByUser_id(long id);
 }

@@ -1,5 +1,7 @@
 package com.portfolio.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.repository.CrudRepository;
 
 import com.portfolio.models.Hostname;
@@ -9,5 +11,7 @@ import com.portfolio.models.Hostname;
 
 public interface HostnameRepository extends CrudRepository<Hostname, Long> {
 
-    public Hostname findByName(String name);
+    public Hostname getByName(String name);
+
+    public Optional<Hostname> findByName(String name);
 }

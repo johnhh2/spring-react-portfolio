@@ -62,11 +62,13 @@ public class Account {
 
     public User getUser() { return this.user; }
     public String getRealname() { return this.realname; }
-    public Hostname getHostname() { return this.hostname; }
     public boolean getDarkMode() { return this.darkMode; }
     public List<PortfolioCategory> getCategories() { return this.categories; }
+    public Hostname getHostname() { return this.hostname; }
 
-    public void setDarkMode(boolean val) { this.darkMode = val; }
+    public void setRealname(String realname) { this.realname = realname; }
+    public void setDarkMode(boolean darkMode) { this.darkMode = darkMode; }
+    public void setHostname(Hostname hostname) { this.hostname = hostname; }
 
     public void addCategory(PortfolioCategory category) {
         category.setAccount(this);
