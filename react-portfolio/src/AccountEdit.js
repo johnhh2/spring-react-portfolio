@@ -23,6 +23,7 @@ export default class AccountEdit extends React.Component {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem("AuthToken"),
       },
     }
     const userId = localStorage.getItem("AuthID")
