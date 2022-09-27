@@ -17,7 +17,6 @@ class UserSingleView extends Component {
       account: null,
       username: "",
       email: "",
-      age: 0,
     }
   }
 
@@ -40,7 +39,6 @@ class UserSingleView extends Component {
             account: data.account,
             username: data.username,
             email: data.email,
-            age: data.age
           });
         }
         this.render();
@@ -53,12 +51,12 @@ class UserSingleView extends Component {
       content = (<tr>
         <td>{this.state.id}</td><td>{this.state.account.realname}</td>
         <td>{this.state.username}</td><td>{this.state.email}</td>
-        <td>{this.state.age}</td><td>{String(this.state.account.darkMode)}</td>
+        <td>{String(this.state.account.darkMode)}</td>
       </tr>);
     } else {
       content = (<tr>
         <td>Loading...</td><td>Loading...</td><td>Loading...</td>
-        <td>Loading...</td><td>Loading...</td><td>Loading...</td>
+        <td>Loading...</td><td>Loading...</td>
       </tr>);
     }
     return (
@@ -69,7 +67,7 @@ class UserSingleView extends Component {
               <thead>
                 <tr>
                   <th>ID</th><th>Name</th><th>Username</th>
-                  <th>Email</th><th>Age</th><th>Dark Mode</th>
+                  <th>Email</th><th>Dark Mode</th>
                 </tr>
               </thead>
               <tbody>

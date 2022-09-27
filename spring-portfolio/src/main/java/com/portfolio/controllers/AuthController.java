@@ -105,11 +105,10 @@ public class AuthController {
         String username = signUpRequest.getUsername();
         String password = encoder.encode(signUpRequest.getPassword());
         String email = signUpRequest.getEmail();
-        int age = signUpRequest.getAge();
         boolean darkMode = signUpRequest.getDarkMode();
         Set<String> strRoles = signUpRequest.getRole();
 
-        User user = new User(username, password, email, age);
+        User user = new User(username, password, email);
 
         Set<Role> roles = new HashSet<>();
 

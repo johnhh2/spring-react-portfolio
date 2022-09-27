@@ -52,15 +52,12 @@ public class User {
                 inverseJoinColumns = @JoinColumn(name="role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    private int age;
-
     protected User() {}
 
-    public User(String username, String password, String email, int age) {
+    public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.age = age;
         this.account = new Account(this);
     }
 
@@ -80,13 +77,12 @@ public class User {
         object.put("account", this.account.toJson());
         object.put("username", this.username);
         object.put("email", this.email);
-        object.put("age", this.age);
         return object;
     }
 
     public String toString() {
         return String.format(
-            "User(id: %s, username: %s, email: %s, age: %s)",
-            this.id, this.username, this.email, this.age);
+            "User(id: %s, username: %s, email: %s)",
+            this.id, this.username, this.email);
     }
 }

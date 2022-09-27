@@ -31,7 +31,7 @@ export default class UserView extends React.Component {
             const content = <tr key={key}>
                       <td><a href={href}>{user.id}</a></td>
                       <td>{user.account.realname}</td><td>{user.username}</td>
-                      <td>{user.email}</td><td>{user.age}</td>
+                      <td>{user.email}</td>
                       <td>{String(user.account.darkMode)}</td></tr>;
             rows.push(content);
         }
@@ -45,7 +45,7 @@ export default class UserView extends React.Component {
                 <thead>
                   <tr>
                     <th>ID</th><th>Name</th><th>Username</th>
-                    <th>Email</th><th>Age</th><th>Dark Mode</th>
+                    <th>Email</th><th>Dark Mode</th>
                   </tr>
                 </thead>
                 <tbody>

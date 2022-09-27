@@ -11,7 +11,6 @@ export default class UserCreate extends React.Component {
         username: "",
         email: "",
         password: "",
-        age: 0,
         adminRole: false,
         modRole: false,
         userRole: false,
@@ -26,9 +25,6 @@ export default class UserCreate extends React.Component {
         break;
       case "email":
         this.setState({email: event.target.value});
-        break;
-      case "age":
-        this.setState({age: event.target.value});
         break;
       case "password":
         this.setState({password: event.target.value});
@@ -75,7 +71,6 @@ export default class UserCreate extends React.Component {
       body: JSON.stringify({
         username: this.state.username,
         email: this.state.email,
-        age: this.state.age,
         password: this.state.password,
         role: this.generateRoles(),
         darkMode: this.state.darkMode,
@@ -88,7 +83,6 @@ export default class UserCreate extends React.Component {
           this.setState({
             username: "",
             email: "",
-            age: 0,
             password: "",
             adminRole: false,
             modRole: false,
@@ -117,8 +111,6 @@ export default class UserCreate extends React.Component {
           <input type="email" id="email" name="email" value={this.state.email} onChange={this.handleChange.bind(this)} /><br/>
           <label htmlFor="password">Password: </label>
           <input type="password" id="password" name="password" value={this.state.password} onChange={this.handleChange.bind(this)} /><br/>
-          <label htmlFor="age">Age: </label>
-          <input type="number" id="age" name="age" value={this.state.age} onChange={this.handleChange.bind(this)} /><br/>
           <label htmlFor="adminRole">Admin Role: </label>
           <input type="checkbox" id="adminRole" name="adminRole" checked={this.state.adminRole} onChange={this.handleChange.bind(this)} /><br/>
           <label htmlFor="modRole">Mod Role: </label>
