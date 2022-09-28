@@ -106,16 +106,15 @@ public class AuthController {
         String password = encoder.encode(signUpRequest.getPassword());
         String email = signUpRequest.getEmail();
         boolean darkMode = signUpRequest.getDarkMode();
-        Set<String> strRoles = signUpRequest.getRole();
 
         User user = new User(username, password, email);
 
         Set<Role> roles = new HashSet<>();
         // NOTE: For now, everyone will be ROLE_USER. This may change later.
-+        Role userRole = roleRepository.findByName(RoleEnum.ROLE_USER)
-+                .orElseThrow(() -> new RuntimeException("Error: User role has not been created in the database. Check the README for further details."));
-+        roles.add(userRole);
-+        /*
+        Role userRole = roleRepository.findByName(RoleEnum.ROLE_USER)
+                .orElseThrow(() -> new RuntimeException("Error: User role has not been created in the database. Check the README for further details."));
+        roles.add(userRole);
+        /*
             strRoles.forEach(role -> {
                 switch (role) {
                 case "admin":
