@@ -105,7 +105,6 @@ public class AuthController {
         String username = signUpRequest.getUsername();
         String password = encoder.encode(signUpRequest.getPassword());
         String email = signUpRequest.getEmail();
-        boolean darkMode = signUpRequest.getDarkMode();
 
         User user = new User(username, password, email);
 

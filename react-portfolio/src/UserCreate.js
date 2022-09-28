@@ -11,7 +11,6 @@ export default class UserCreate extends React.Component {
         username: "",
         email: "",
         password: "",
-        darkMode: false,
     };
   }
 
@@ -25,9 +24,6 @@ export default class UserCreate extends React.Component {
         break;
       case "password":
         this.setState({password: event.target.value});
-        break;
-      case "darkMode":
-        this.setState({darkMode: !this.state.darkMode});
         break;
       default:
         console.error("Unexpected event target: ", event.target);
@@ -49,7 +45,6 @@ export default class UserCreate extends React.Component {
         username: this.state.username,
         email: this.state.email,
         password: this.state.password,
-        darkMode: this.state.darkMode,
       })
     };
     fetch(`${serverAddress}/api/auth/signup`, requestOptions)
@@ -60,7 +55,6 @@ export default class UserCreate extends React.Component {
             username: "",
             email: "",
             password: "",
-            darkMode: false,
           });
         }
         let form_response = document.getElementById('form-response');
@@ -84,8 +78,6 @@ export default class UserCreate extends React.Component {
           <input type="email" id="email" name="email" value={this.state.email} onChange={this.handleChange.bind(this)} /><br/>
           <label htmlFor="password">Password: </label>
           <input type="password" id="password" name="password" value={this.state.password} onChange={this.handleChange.bind(this)} /><br/>
-          <label htmlFor="darkMode">Dark Mode: </label>
-          <input type="checkbox" id="darkMode" name="darkMode" checked={this.state.darkMode} onChange={this.handleChange.bind(this)} /><br/>
           <span id='form-response'></span>
           <input type="submit" id="submit" name="submit" value="Create User" />
           </form>
