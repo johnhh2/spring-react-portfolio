@@ -9,7 +9,7 @@ export default class AccountEdit extends React.Component {
     super(props);
     this.state = {
         email: "",
-        name: "",
+        realname: "",
         hostname: "",
         hostnameEnabled: false,
         darkMode: false,
@@ -34,21 +34,20 @@ export default class AccountEdit extends React.Component {
         if (response.ok) {
           this.setState({
             email: data.email,
-            name: data.account.realname,
+            realname: data.account.realname,
             hostname: data.account.hostname.name,
             hostnameEnabled: data.account.hostname.enabled,
             darkMode: data.account.darkMode,
             categories: data.account.categories,
             projects: data.account.projects,
           }, function() {
-            console.log(this.state.name);
           });
         }
       })
       .catch(error => {
         console.error('Error', error);
       });
-    if (this.state.name !== "") {
+    if (this.state.realname !== "") {
       this.setState({title: "Settings"});
     } else {
       this.setState({title: "Set up your Account!"});
@@ -59,7 +58,7 @@ export default class AccountEdit extends React.Component {
   handleChange(event) {
     switch (event.target.id) {
       case "name":
-        this.setState({name: event.target.value});
+        this.setState({realname: event.target.value});
         break;
       case "hostname":
         this.setState({hostname: event.target.value});
@@ -87,7 +86,7 @@ export default class AccountEdit extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name: this.state.name,
+        realname: this.state.realname,
         hostname: this.state.hostname,
         hostnameEnabled: this.state.hostnameEnabled,
         darkMode: this.state.darkMode,

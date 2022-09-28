@@ -31,7 +31,6 @@ export default class Navbar extends React.Component {
     fetch(`${serverAddress}/api/user/get?id=${id}`, requestOptions)
       .then(async response => {
         const data = await response.json();
-        console.log(data);
         if (data.length === 0) {
           localStorage.removeItem("AuthToken");
         } else {

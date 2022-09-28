@@ -44,7 +44,7 @@ public class AccountController {
     @PostMapping("edit")
     public String editAccount(@RequestParam long userId, @RequestBody EditAccountRequest editAccountRequest) {
         Account account = accountRepository.getByUser_id(userId);
-        String realname = editAccountRequest.getName();
+        String realname = editAccountRequest.getRealname();
         String hostnameName = editAccountRequest.getHostname();
         boolean hostnameEnabled = editAccountRequest.getHostnameEnabled();
         boolean darkMode = editAccountRequest.getDarkMode();
@@ -61,6 +61,8 @@ public class AccountController {
         account.setRealname(realname);
         account.setHostname(hostname);
         account.setDarkMode(darkMode);
+
+        accountRepository.save(account);
 
         JSONObject object = new JSONObject();
         object.put("success", true);
