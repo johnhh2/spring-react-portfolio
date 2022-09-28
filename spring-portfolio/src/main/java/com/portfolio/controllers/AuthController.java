@@ -111,12 +111,11 @@ public class AuthController {
         User user = new User(username, password, email);
 
         Set<Role> roles = new HashSet<>();
-
-        if (strRoles == null) {
-            Role userRole = roleRepository.findByName(RoleEnum.ROLE_USER)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(userRole);
-        } else {
+        // NOTE: For now, everyone will be ROLE_USER. This may change later.
++        Role userRole = roleRepository.findByName(RoleEnum.ROLE_USER)
++                .orElseThrow(() -> new RuntimeException("Error: User role has not been created in the database. Check the README for further details."));
++        roles.add(userRole);
++        /*
             strRoles.forEach(role -> {
                 switch (role) {
                 case "admin":
@@ -137,7 +136,7 @@ public class AuthController {
                     roles.add(userRole);
                 }
             });
-        }
+        } */
 
         user.setRoles(roles);
         userRepository.save(user);
