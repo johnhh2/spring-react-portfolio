@@ -126,7 +126,7 @@ export default class AccountEdit extends React.Component {
           <span id='form-error'>{this.state.errorMessage}</span>
           <form onSubmit={this.handleSubmit.bind(this)}>
           <label htmlFor="name">Name: </label>
-          <input type="text" id="name" name="name" value={this.state.name} onChange={this.handleChange.bind(this)} /><br/>
+          <input type="text" id="name" name="name" value={this.state.realname} onChange={this.handleChange.bind(this)} /><br/>
           <label htmlFor="hostname">Hostname: </label>
           <input type="text" id="hostname" name="hostname" value={this.state.hostname} onChange={this.handleChange.bind(this)} /><br/>
           <label htmlFor="hostname_enabled">Hostname Enabled: </label>
