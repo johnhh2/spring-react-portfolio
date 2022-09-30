@@ -41,17 +41,17 @@ export default class AccountEdit extends React.Component {
             categories: data.account.categories,
             projects: data.account.projects,
           }, function() {
+            if (this.state.realname !== "") {
+              this.setState({title: "Settings"});
+            } else {
+              this.setState({title: "Set up your Account!"});
+            }
           });
         }
       })
       .catch(error => {
         console.error('Error', error);
       });
-    if (this.state.realname !== "") {
-      this.setState({title: "Settings"});
-    } else {
-      this.setState({title: "Set up your Account!"});
-    }
     this.render();
   }
 
