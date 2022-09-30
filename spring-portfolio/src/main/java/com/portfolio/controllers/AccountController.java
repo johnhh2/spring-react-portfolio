@@ -67,6 +67,7 @@ public class AccountController {
         JSONObject object = new JSONObject();
         object.put("success", true);
         object.put("message", "Your account has been successfully updated.");
+        object.put("account", account.toJson());
 
         return object.toString();
     }

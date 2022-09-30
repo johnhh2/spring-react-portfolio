@@ -99,6 +99,12 @@ export default class AccountEdit extends React.Component {
         if (data.success) {
           this.setState({
             message: data.message,
+            realname: data.account.realname,
+            hostname: data.account.hostname.name,
+            hostnameEnabled: data.account.hostname.enabled,
+            darkMode: data.account.darkMode,
+            categories: data.account.categories,
+            projects: data.account.projects,
           });
         } else {
           console.error('Error', data.message);
