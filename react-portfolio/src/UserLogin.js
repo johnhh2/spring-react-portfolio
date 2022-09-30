@@ -13,6 +13,31 @@ export default class UserLogin extends React.Component {
     };
   }
 
+  redirectToAccountEditOrHome() {
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': localStorage.getItem("AuthToken"),
+      },
+    };
+    const id = localStorage.getItem("AuthID");
+    fetch(`${serverAddress}/api/user/get?id=${id}`, requestOptions)
+      .then(async response => {
+        const data = await response.json();
+        let redirectLocation = "/account/edit";
+        if (data.account.realname !== "") {
+          redirectLocation = "/";
+        }
+        this.setState({redirect: redirectLocation},
+          () => { window.location = this.state.redirect }
+        );
+      })
+      .catch(error => {
+        console.error("Error: ", error);
+      });
+  }
+
   handleChange(event) {
     switch (event.target.id) {
       case "username":
@@ -52,7 +77,7 @@ export default class UserLogin extends React.Component {
           });
           localStorage.setItem("AuthToken", data.tokenType + " " + data.accessToken);
           localStorage.setItem("AuthID", data.id);
-          window.location = "/";
+          this.redirectToAccountEditOrHome();
         } else {
           let form_response = document.getElementById('form-response');
           if (response.status === 401) {
