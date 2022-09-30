@@ -23,8 +23,8 @@ You will need [JDK 17](https://www.oracle.com/java/technologies/downloads/#java1
 #### Maven
 Additionally, download and extract [Maven 3.8.6](https://maven.apache.org/download.cgi).
 
-### Database setup
-##### Creating MySQL database
+### MySQL setup
+#### Creating the database
  - Install mysql: `sudo apt install mysql-server`
  - Start the mysql service: `sudo service mysql start`
  - Configure the database:
@@ -36,16 +36,6 @@ Additionally, download and extract [Maven 3.8.6](https://maven.apache.org/downlo
         CREATE USER 'user1'@'%' IDENTIFIED BY 'pass'; -- Creates the user
         GRANT ALL ON portfolio.* TO 'user1'@'%'; -- Gives all privileges to the new user on the newly created database
         \q
-        ```
-
-   - Create the file _spring-portfolio/src/main/resources/application.properties_ and add the following lines, or ensure they already exist there:
-
-        ```
-        spring.jpa.hibernate.ddl-auto=update
-        spring.datasource.url=jdbc:mysql://localhost:3306/portfolio
-        spring.datasource.username=user1
-        spring.datasource.password=pass
-        spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
         ```
 
  - Once configured, you should be able to start the back-end server with the command listed in [Startup](https://github.com/johnhh2/spring-react-portfolio#startup). This should create all the necessary tables in the database.
