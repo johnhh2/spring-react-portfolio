@@ -73,9 +73,8 @@ export default class AccountEdit extends React.Component {
         console.error("Unexpected event target: ", event.target);
         break;
     }
-    let form_response = document.getElementById('form-response');
-    if (form_response.innerHTML) {
-      form_response.innerHTML = "";
+    if (this.state.message !== "") {
+      this.setState({message: ""});
     }
   }
 
